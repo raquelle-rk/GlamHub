@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+
+{% block content%}
+<h3>Registered Users:</h3>
+{% for account in accounts %}
+    <p>{{account.email}} | {{account.username}}</p>
+{% endfor %}
+
+
+{% endblock content %}
