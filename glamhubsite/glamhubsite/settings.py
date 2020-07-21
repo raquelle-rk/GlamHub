@@ -14,8 +14,6 @@ from pathlib import Path
 import os
 
 
-
-
 # Build paths inside the project like this: BASE_DIR/ 'subdir')
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -37,8 +35,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # my apps
+    'personal',
     'phone_field',
-    'accounts',
+    'account',
     # django pre installed apps.
     'django.contrib.admin',
     'django.contrib.auth',
@@ -63,7 +62,7 @@ ROOT_URLCONF = 'glamhubsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # where to find templates for the project
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,8 +75,8 @@ TEMPLATES = [
     },
 ]
 
-AUTH_USER_MODEL = 'accounts.Accounts'
-# AUTH_USER_MODEL = 'accounts.Accounts'  # set property for custom user model to overwtite the default built in django behaivour for default user objects
+#AUTH_USER_MODEL = 'accounts.Accounts'
+AUTH_USER_MODEL = 'account.Account'  # set property for custom user model to overwtite the default built in django behaivour for default user objects
 WSGI_APPLICATION = 'glamhubsite.wsgi.application'
 
 
