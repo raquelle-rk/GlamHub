@@ -7,6 +7,8 @@ from account.forms import (
     AccountUpdateForm
 )
 
+from blog.models import BlogPost
+
 
 # The registration form view creation
 def registration_view(request):
@@ -46,6 +48,7 @@ def login_view(request):
     if user.is_authenticated:
         return redirect("home")
 
+    redirect_url = request.GET.get('next')
     if request.POST:
         form = AccountAuthenticationForm(request.POST)
         if form.is_valid():
@@ -55,7 +58,8 @@ def login_view(request):
 
             if user:
                 login(request, user)
-                return redirect("home")
+                url = redirect_url if redirect_url else 'home'
+                return redirect(url)
 
     else:
         form = AccountAuthenticationForm()
@@ -74,7 +78,12 @@ def account_view(request):
     if request.POST:
         form = AccountUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
+            form.initial = {
+                "email": request.POST['email'],
+                "username": request.POST['username'],
+            }
             form.save()
+            context['success_message'] = "Successfully updated!"
     else:
         form = AccountUpdateForm(
                 initial={
@@ -83,6 +92,10 @@ def account_view(request):
                 }
             )
     context['account_form'] = form
+
+    blog_posts = BlogPost.objects.filter(author=request.user)
+    context['blog_posts'] = blog_posts
+
     return render(request, "account/account.html", context)
 
 

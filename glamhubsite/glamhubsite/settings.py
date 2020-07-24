@@ -30,6 +30,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# tell django how to send a password reset email in develpment environment
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 # Application definition
 
@@ -38,6 +42,7 @@ INSTALLED_APPS = [
     'personal',
     'phone_field',
     'account',
+    'blog',
     # django pre installed apps.
     'django.contrib.admin',
     'django.contrib.auth',
@@ -74,8 +79,7 @@ TEMPLATES = [
         },
     },
 ]
-
-#AUTH_USER_MODEL = 'accounts.Accounts'
+LOGIN_URL = 'login'
 AUTH_USER_MODEL = 'account.Account'  # set property for custom user model to overwtite the default built in django behaivour for default user objects
 WSGI_APPLICATION = 'glamhubsite.wsgi.application'
 
@@ -132,4 +136,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+    '/var/www/static/',
+    # os.path.join(BASE_DIR, 'static_cdn'),
+    os.path.join(BASE_DIR, 'media_cdn'),
+]
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn')
+
