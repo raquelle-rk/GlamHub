@@ -1,0 +1,51 @@
+{% load static %}
+<style type="text/css">
+	.card{
+		max-width: 700px;
+		width: 120%;
+	}
+	.card-body{
+		padding: 20px;
+	}
+</style>
+
+{% if artistportfolio %}
+<div class="container">
+	<div class="row">
+		<!-- Artist Portfolio -->
+		<div class="card m-auto">
+			<a href="{% url 'artist:detail' artistportfolio.slug %}">
+				{% if artistportfolio.image %}
+				<img class="card-img-top" src="{{artistportfolio.image.url}}" alt="{% static 'glamhub logo.png' %}">
+				{% endif %}
+			</a>
+			<div class="card-body mt-2 mb-2">
+				<a href="{% url 'artist:detail' artistportfolio.slug %}">
+					<h2 class="card-business_name">{{artistportfolio.business_name}}</h2>
+				</a>
+				<p class="card-text">{{artistportfolio.body|safe|truncatechars:180}}</p>
+				{% if artistportfolio.business_owner == request.user %}
+					<a href="{% url 'artist:edit' artistportfolio.slug %}" class="btn btn-primary">Update</a>
+				{% endif %}
+			</div>
+			<div class="card-footer text-muted">
+			  Updated on {{artistportfolio.date_updated}} by {{artistportfolio.business_owner}}
+			</div>
+		</div>
+	</div>
+</div>
+
+{% else %}
+
+<div class="container">
+	<div class="row">
+		<div class="card m-auto">
+			<div class="card-body mt-2 mb-2">
+				<h2 class="card-business_name">No results</h2>
+				<p class="card-text">There were no results matching the search: "{{query}}"</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endif %}

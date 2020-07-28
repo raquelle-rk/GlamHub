@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from django.http import HttpResponse
+# from django.http import HttpResponse
 
 from blog.models import BlogPost
 from blog.forms import CreateBlogPostForm, UpdateBlogPostForm
@@ -17,6 +17,8 @@ def create_blog_view(request):
         obj = form.save(commit=False)
         obj.author = request.user
         obj.save()
+        context['success_message'] = "Post Created Successfully"
+
         form = CreateBlogPostForm()
 
     context['form'] = form

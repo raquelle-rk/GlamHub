@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'phone_field',
     'account',
     'blog',
+    'artist',
     # django pre installed apps.
     'django.contrib.admin',
     'django.contrib.auth',
@@ -138,7 +139,7 @@ USE_TZ = True
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-    '/var/www/static/',
+    # '/var/www/static/',
     # os.path.join(BASE_DIR, 'static_cdn'),
     os.path.join(BASE_DIR, 'media_cdn'),
 ]
@@ -146,4 +147,3 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn')
-

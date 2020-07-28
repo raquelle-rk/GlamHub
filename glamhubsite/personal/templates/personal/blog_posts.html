@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style type="text/css">
+	.container {
+    max-width: 100%;
+}
+
+/* :: 11.0 Breadcrumb CSS */
+.breadcrumb-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+    }
+
+    .breadcrumb-content h2 {
+        font-size: 60px;
+        margin-bottom: 15px;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1199px) {
+        .breadcrumb-content h2 {
+            font-size: 48px;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+        .breadcrumb-content h2 {
+            font-size: 48px;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        .breadcrumb-content h2 {
+            font-size: 36px;
+        }
+    }
+
+    .breadcrumb-content .breadcrumb {
+        position: relative;
+        padding: 0;
+        background-color: transparent;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+
+    .breadcrumb-content .breadcrumb .breadcrumb-item a:hover,
+    .breadcrumb-content .breadcrumb .breadcrumb-item a:focus {
+        color: #bca858;
+    }
+
+    .breadcrumb-content .breadcrumb .breadcrumb-item+.breadcrumb-item::before {
+        content: '\f101';
+        font-family: "FontAwesome";
+    }
+</style>
+
+<!-- Breadcrumb Area Start -->
+<section class="breadcrumb-area section-padding-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb-content">
+                    <h2>Our Blogs</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="icon_house_alt"></i> Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Blogs</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Area End -->
+
+<!--blog posts section-->
+<div class="container">
+	<div class="row">
+
+		<!-- blog feed -->
+		<div class="left-column col-lg-7 offset-lg-1">
+
+			<!-- Top 'create post' bar -->
+			<div class="d-lg-none mb-3">
+				<div class="card m-auto d-flex flex-column p-3">
+					<img class="img-fluid d-block m-auto pb-2" src="{% static 'glamhub logo.png' %}" width="72" height="72">
+					<p class="lead">Having some exicitng facts or tutorials?</p>
+					<p class="m-auto"><a class="btn btn-primary" href="{% url 'blog:create' %}">Create post</a></p>
+				</div>
+			</div>
+			<!-- end Top 'create post' bar -->
+
+			<!-- Blog posts-->
+			{% if blog_posts %}
+				{% for post in blog_posts %}
+					<div class="blog-post-container">
+						{% include 'blog/snippets/blog_post_snippet.html' with blog_post=post %}
+					</div>
+				{% endfor %}
+			{% else %}
+			<div class="blog-post-container">
+				{% include 'blog/snippets/blog_post_snippet.html' with query=query %}
+			</div>
+			{% endif %}
+			<!-- End Blog posts-->
+
+			<!--Pagination-->
+			{% include 'blog/snippets/blog_post_pagination.html' with blog_posts=blog_posts %}
+
+		</div>
+		<!-- end blog feed -->
+
+
+
+
+		<!-- Right 'create post' column  -->
+		<div class="right-column col-lg-3 d-lg-flex d-none flex-column">
+
+			<div class="card create-post-bar d-flex flex-column p-3">
+				<img class="img-fluid d-block m-auto pb-2"  src="{% static 'glamhub logo.png' %}" width="72" height="72">
+				<p class="lead">Having some exicitng facts or tutorials?</p>
+				<p class="m-auto"><a class="btn btn-primary" href="{% url 'blog:create' %}">Create post</a></p>
+			</div>
+
+		</div>
+		<!-- end Right 'create post' column  -->
+
+	</div>
+</div>
+
+{% endblock content %}
+

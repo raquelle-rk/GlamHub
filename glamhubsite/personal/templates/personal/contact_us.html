@@ -1,0 +1,336 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    /*  Breadcrumb CSS */
+    .breadcrumb-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+    }
+
+    .breadcrumb-content h2 {
+        font-size: 60px;
+        margin-bottom: 15px;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1199px) {
+        .breadcrumb-content h2 {
+            font-size: 48px;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+        .breadcrumb-content h2 {
+            font-size: 48px;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        .breadcrumb-content h2 {
+            font-size: 36px;
+        }
+    }
+
+    .breadcrumb-content .breadcrumb {
+        position: relative;
+        padding: 0;
+        background-color: transparent;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+
+    .breadcrumb-content .breadcrumb .breadcrumb-item a:hover,
+    .breadcrumb-content .breadcrumb .breadcrumb-item a:focus {
+        color: #bca858;
+    }
+
+    .breadcrumb-content .breadcrumb .breadcrumb-item+.breadcrumb-item::before {
+        content: '\f101';
+        font-family: "FontAwesome";
+    }
+
+    /*  google maps area */
+    .google-maps-area {
+        position: relative;
+        z-index: 1;
+        height: 400px;
+    }
+
+    @media only screen and (max-width: 767px) {
+        .google-maps-area {
+            height: 320px;
+        }
+    }
+
+    .google-maps-area iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    /*  Contact form */
+
+    .contact-form {
+        position: relative;
+        z-index: 1;
+        border: 1px solid #e5e5e5;
+        padding: 30px;
+    }
+
+    @media only screen and (max-width: 767px) {
+    .contact-form {
+            padding: 20px;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+    .contact-form h2 {
+            font-size: 24px;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+    .contact-form h4 {
+            font-size: 20px;
+        }
+    }
+
+    .contact-form .form-control {
+        width: 100%;
+        height: 50px;
+        padding: 0 20px;
+        border-radius: 2px;
+        color: #acacac;
+        font-size: 14px;
+    }
+
+    .contact-form .form-control:focus {
+        box-shadow: none;
+        border-color: #bca858;
+    }
+
+    .contact-form textarea.form-control {
+        height: 150px;
+        padding: 20px;
+    }
+
+    .single-contact-information {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+    }
+
+    .single-contact-information i {
+        font-size: 30px;
+        margin-bottom: 15px;
+        color: #bca858;
+        display: block;
+    }
+
+    .single-contact-information h4 {
+        display: block;
+        margin-bottom: 15px;
+    }
+
+    .single-contact-information p {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    .contact-us {
+        position: relative;
+        z-index: 1;
+    }
+
+    .contact-us .google-maps {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 470px;
+    }
+
+    @media only screen and (max-width: 767px) {
+        .contact-us .google-maps {
+            height: 280px;
+        }
+    }
+
+    .contact-us .google-maps iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .contact-information {
+        position: relative;
+        z-index: 1;
+        padding: 30px 50px;
+        background-color: #00aeef;
+        border-radius: 3px;
+    }
+
+    @media only screen and (max-width: 767px) {
+        .contact-information {
+            margin-bottom: 100px;
+        }
+    }
+
+    .contact-information h5 {
+        color: #ffffff;
+    }
+
+    .contact-information p {
+        color: #ffffff;
+    }
+
+
+
+    .contact-form {
+        position: relative;
+        z-index: 1;
+    }
+
+    .contact-form .form-control {
+        width: 100%;
+        height: 46px;
+        padding: 0 15px;
+        font-size: 13px;
+        font-style: italic;
+    }
+
+    .contact-form .form-control:focus {
+        box-shadow: none;
+        border-color: #00aeef;
+    }
+
+    .contact-form textarea.form-control {
+        height: 110px;
+        padding: 15px;
+    }
+</style>
+
+
+<!-- Breadcrumb Area Start -->
+<section class="breadcrumb-area section-padding-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb-content">
+                    <h2>Our Contacts</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="icon_house_alt"></i>
+                                    Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Contact us</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Area End -->
+
+
+
+<!-- Google Maps -->
+<div class="google-maps-area">
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8031387053393!2d36.78656074930154!3d-1.292534535990444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10a39343ae3b%3A0x14355e986ccd2ce7!2slandmark%20plaza!5e0!3m2!1sen!2ske!4v1595962247750!5m2!1sen!2ske"
+        allowfullscreen=""></iframe>
+</div>
+<!-- Google Maps End -->
+
+<!-- Contact Information Area  -->
+<section class="contact-information-area section-padding-80-0" >
+    <div class="container">
+        <div class="row">
+            <!-- Single Contact Information -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="single-contact-information mb-80">
+                    <i class="icon_phone"></i>
+                    <h4>Phone</h4>
+                    <p>+254 210 926 122</p>
+                </div>
+            </div>
+
+            <!-- Single Contact Information -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="single-contact-information mb-80">
+                    <i class="icon_pin"></i>
+                    <h4>Address</h4>
+                    <p>28 Landmark Plaza, Argwings Kodhek Rd, Nairobi</p>
+                </div>
+            </div>
+
+            <!-- Single Contact Information -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="single-contact-information mb-80">
+                    <i class="icon_mail"></i>
+                    <h4>Email</h4>
+                    <p>info.glamhub@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Information Area End -->
+
+<!-- Contact Area Start -->
+<section class="contact-area background-color:gray; section-padding-80">
+    <div class="container">
+        <div class="row">
+            <!-- Section Heading -->
+            <div class="col-12">
+                <div class="section-heading text-center">
+                    <h2>Leave message</h2>
+                    <p>Our staff will get back  to you later and answer your questions.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <!-- Form -->
+                <form action="#" method="post" class="contact-form border-0 p-0">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="text" name="message-name" class="form-control mb-30" placeholder="Your Name">
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="email" name="message-email" class="form-control mb-30" placeholder="Email">
+                        </div>
+                        <div class="col-12">
+                            <textarea name="message" class="form-control mb-30"
+                                placeholder="Start the discussion..."></textarea>
+                        </div>
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn btn-3 mt-15 active">Send Message</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Contact Area End -->
+
+
+{% endblock content %}

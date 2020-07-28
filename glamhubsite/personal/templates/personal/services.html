@@ -1,0 +1,355 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* :: 11.0 Breadcrumb CSS */
+    .breadcrumb-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+    }
+
+    .breadcrumb-content h2 {
+        font-size: 60px;
+        margin-bottom: 15px;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1199px) {
+        .breadcrumb-content h2 {
+            font-size: 48px;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+        .breadcrumb-content h2 {
+            font-size: 48px;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        .breadcrumb-content h2 {
+            font-size: 36px;
+        }
+    }
+
+    .breadcrumb-content .breadcrumb {
+        position: relative;
+        padding: 0;
+        background-color: transparent;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+
+    .breadcrumb-content .breadcrumb .breadcrumb-item a:hover,
+    .breadcrumb-content .breadcrumb .breadcrumb-item a:focus {
+        color: #bca858;
+    }
+
+    .breadcrumb-content .breadcrumb .breadcrumb-item+.breadcrumb-item::before {
+        content: '\f101';
+        font-family: "FontAwesome";
+    }
+
+
+    /* :: 16.0 Service CSS */
+    .single-service-area {
+        position: relative;
+        z-index: 1;
+        padding: 40px 20px;
+        border: 1px solid #e5e5e5;
+        text-align: center;
+        -webkit-transition-duration: 500ms;
+        -o-transition-duration: 500ms;
+        transition-duration: 500ms;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1199px) {
+        .single-service-area {
+            padding: 30px 15px;
+        }
+    }
+
+    .single-service-area img {
+        display: inline-block;
+        margin-bottom: 15px;
+    }
+
+    .single-service-area h5 {
+        font-size: 22px;
+        margin-bottom: 10px;
+        -webkit-transition-duration: 300ms;
+        -o-transition-duration: 300ms;
+        transition-duration: 300ms;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1199px) {
+        .single-service-area h5 {
+            font-size: 18px;
+        }
+    }
+
+    .single-service-area p {
+        margin-bottom: 0;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1199px) {
+        .single-service-area p {
+            font-size: 14px;
+        }
+    }
+
+    .single-service-area:hover,
+    .single-service-area:focus {
+        border-color: transparent;
+        -webkit-box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
+        box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
+    }
+
+    .single-service-area:hover h5,
+    .single-service-area:focus h5 {
+        color: #bca858;
+    }
+
+    .single--service--item {
+        position: relative;
+        z-index: 1;
+    }
+
+    .single--service--item .service-content {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+        width: 50%;
+    }
+
+    @media only screen and (max-width: 767px) {
+        .single--service--item .service-content {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+            width: 100%;
+        }
+    }
+
+    .single--service--item .service-content .service-text {
+        margin-left: auto;
+        width: 555px;
+        padding: 80px 0;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1199px) {
+        .single--service--item .service-content .service-text {
+            width: 455px;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+        .single--service--item .service-content .service-text {
+            width: 345px;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        .single--service--item .service-content .service-text {
+            width: 100%;
+            padding: 80px 30px;
+        }
+    }
+
+    .single--service--item .service-content .service-text h2 {
+        font-size: 42px;
+        display: block;
+        margin-bottom: 40px;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1199px) {
+        .single--service--item .service-content .service-text h2 {
+            font-size: 36px;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+        .single--service--item .service-content .service-text h2 {
+            font-size: 30px;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        .single--service--item .service-content .service-text h2 {
+            font-size: 24px;
+        }
+    }
+
+    .single--service--item .service-content .service-text p {
+        margin-bottom: 30px;
+        display: block;
+        max-width: 250px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+    }
+
+    .single--service--item .service-content .service-text p span:last-child {
+        font-weight: 600;
+        color: #252525;
+    }
+
+    .single--service--item .service-content .service-text p:last-child {
+        margin-bottom: 0;
+    }
+
+    .single--service--item .service-thumbnail {
+        position: relative;
+        z-index: 1;
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+        width: 50%;
+        height: 500px;
+    }
+
+    @media only screen and (max-width: 767px) {
+        .single--service--item .service-thumbnail {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+            width: 100%;
+            height: 300px;
+        }
+    }
+
+
+
+    .single--service--item.odd-item .service-content .service-text {
+        margin-left: 15%;
+        width: auto;
+    }
+
+    @media only screen and (max-width: 767px) {
+        .single--service--item.odd-item .service-content .service-text {
+            margin-left: auto;
+        }
+    }
+
+    .glamhub-service {
+        position: relative;
+        z-index: 1;
+    }
+
+    .glamhub-service .single--service--item:first-child {
+        border-top: 1px solid #e5e5e5;
+    }
+
+    .glamhub-service .single--service--item:last-child {
+        border-bottom: 1px solid #e5e5e5;
+    }
+</style>
+
+
+<!-- Breadcrumb Area Start -->
+<section class="breadcrumb-area section-padding-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb-content">
+                    <h2>Our Services</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="icon_house_alt"></i> Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Services</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Area End -->
+
+<!-- Service Area Start -->
+<section class="glamhub-service">
+
+    <!-- Single Service Item -->
+    <div class="single--service--item d-flex flex-wrap align-items-center">
+        <!-- Service Content -->
+        <div class="service-content">
+            <div class="service-text">
+                <p><h3>Account Set-ups</h3> <h5>who can setup an account?</h5></p>
+
+                <p><span>Professional makeup artist:</span> <span>$55+</span></p>
+                <p><span>Esteemed makeup client:</span> <span>$75+</span></p>
+            </div>
+        </div>
+        <!-- Service Thumbnail -->
+        <div class="service-thumbnail bg-img jarallax" style="background-image: url('{% static 'account setup.jpeg' %}'); background-size: cover; background-position: center center;"></div>
+
+
+    </div>
+
+    <!-- Single Service Item -->
+    <div class="single--service--item odd-item d-flex flex-wrap align-items-center">
+        <!-- Service Thumbnail -->
+        <div class="service-thumbnail bg-img jarallax" style="background-image: url('{% static 'pool.jpeg' %}'); background-size: cover;"></div>
+
+        <!-- Service Content -->
+        <div class="service-content">
+            <div class="service-text">
+                <h3>Makeup Artistry Services Pool</h3>
+                <p><span>Personal Services:</span></p>
+                    <span>
+                        <ul style="text-decoration: none;">
+                            <li>Bridal and wedding makeup</li>
+                            <li>Family photoshoot?</li>
+                        </ul>
+                    </span>
+
+
+                <p><span>Film and Movies:</span></p>
+                    <ul>
+                        <li> character to suit makeup</li>
+                    </ul>
+                <p><span>Specialised makeup:</span>
+                    <ul style="text-decoration: none;">
+                        <li>scars and deformity coverup makeup</li>
+                    </ul>
+                <p><span>Fashion</span></p>
+                     Runway makeup
+            </div>
+        </div>
+    </div>
+
+    <!-- Single Service Item -->
+    <div class="single--service--item d-flex flex-wrap align-items-center">
+        <!-- Service Content -->
+        <div class="service-content">
+            <div class="service-text">
+                <h3>Book Your Favorite Artist</h3>
+                <div class="book-now-btn ml-5 mt-4 mt-lg-0 ml-md-4">
+                    <a class="btn btn-outline-primary" href="#" >Book Now</a>
+                </div>
+            </div>
+        </div>
+        <!-- Service Thumbnail -->
+        <div class="service-thumbnail bg-img jarallax" style="background-image: url('{% static 'accounts 5.jpeg' %}'); background-size: cover;"></div>
+    </div>
+
+</section>
+<!-- Service Area End -->
+
+{% endblock content %}

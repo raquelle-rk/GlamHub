@@ -5,6 +5,12 @@
 {% block content %}
 
 <style type="text/css">
+    body{
+        width: 100%;
+        /* background: url("{% static 'accounts 5.jpeg' %}") top center; */
+        background-size: cover;
+        position: relative;
+    }
     .form-signin {
     width: 100%;
     max-width: 330px;
@@ -39,6 +45,15 @@
         max-width: 500px;
         width:100%;
         margin:auto;
+        text-align: center;
+
+    }
+    .artistportfolios{
+        max-width: 500px;
+        width:100%;
+        margin:auto;
+        text-align: center;
+
 
     }
 </style>
@@ -83,6 +98,28 @@
 
 
   <div class="container mt-4 p-4">
+    <div class="row">
+        <div class="artistportfolios">
+          <h3 class="mb-3 font-weight-normal">Your Portfolio: </h3>
+          {% if artistportfolios %}
+          <ul>
+              {% for portfolio in artistportfolios %}
+              <a href="{% url 'artist:detail' portfolio.slug %}" style="text-decoration: none;">
+                  <li class="list-group-item">{{portfolio}}</li>
+              </a>
+              {% endfor %}
+          </ul>
+          {% else %}
+            <p>You have no portfolio yet. </p>
+            <p>Create your first Portfolio <a href="{% url 'artist:create' %}">Here</a></p>
+          {% endif %}
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container mt-4 p-4">
       <div class="row">
           <div class="blog-posts">
             <h3 class="mb-3 font-weight-normal">Blog posts: </h3>
@@ -100,7 +137,7 @@
 
           </div>
       </div>
-  </div>
+</div>
 
 
   {% endblock content %}

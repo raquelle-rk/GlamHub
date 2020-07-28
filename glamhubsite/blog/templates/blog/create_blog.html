@@ -19,6 +19,10 @@
 <div class="container">
 	<div class="row">
 		<div class="col-lg-7 offset-lg-1">
+
+			{% if success_message %}
+				<h3 style="color:green; text-align: center;">{{success_message}}</h3>
+			{% endif %}
 			<form class="create-form" method="post" enctype="multipart/form-data">{% csrf_token %}
 
 				<!-- title -->
@@ -40,7 +44,7 @@
 				</div>
 
 				<!-- Submit btn -->
-				<button class="submit-button btn btn-lg btn-primary btn-block" type="submit">POST</button>
+				<button class="submit-button btn btn-lg btn-primary btn-block btn-primary" type="submit">POST</button>
 			</form>
 		</div>
 	</div>

@@ -8,7 +8,7 @@ from account.forms import (
 )
 
 from blog.models import BlogPost
-
+from artist.models import ArtistPortfolio
 
 # The registration form view creation
 def registration_view(request):
@@ -95,6 +95,9 @@ def account_view(request):
 
     blog_posts = BlogPost.objects.filter(author=request.user)
     context['blog_posts'] = blog_posts
+
+    artistportfolio = ArtistPortfolio.objects.filter(business_owner=request.user) # noqa
+    context['artistportfolio'] = artistportfolio
 
     return render(request, "account/account.html", context)
 

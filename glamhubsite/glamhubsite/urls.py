@@ -21,7 +21,14 @@ from django.conf import settings
 
 from personal.views import (
     home_screen_view,
-)
+    about_us_view,
+    blog_posts_view,
+    artist_portfolio_screen,
+    contact_us_view,
+    services_screen_view,
+
+    )
+
 from account.views import (
     registration_view,
     logout_view,
@@ -29,16 +36,29 @@ from account.views import (
     account_view,
     must_authenticate_view,
 )
+from artist.views import (
+    create_artistportfolio_view,
+    detail_artistportfolio_view,
+    edit_artistportfolio_view,
+)
+
 
 urlpatterns = [
     path('', home_screen_view, name="home"),
+    path('about/', about_us_view, name="about"),
     path('account/', account_view, name="account"),
     path('admin/', admin.site.urls),
+    path('posts/', blog_posts_view, name="post"),
     path('blog/', include('blog.urls', 'blog')),
     path('login/', login_view, name="login"),
     path('logout/', logout_view, name="logout"),
-    path('must_authenticate/', must_authenticate_view, name="must_authenticate"),
+    path('must_authenticate/', must_authenticate_view, name="must_authenticate"),  # noqa
     path('register/', registration_view, name="register"),
+    path('artist/', include('artist.urls', 'artist')),  # noqa
+    path('artist_portfolios/', artist_portfolio_screen, name="artist_portfolios"), # noqa
+    path('contact/', contact_us_view, name="contact"),
+    path('services/', services_screen_view, name="services"),
+
 
 
 
@@ -71,5 +91,5 @@ urlpatterns = [
 
 
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)  # noqa
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # noqa

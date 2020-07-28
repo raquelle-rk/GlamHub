@@ -1,0 +1,451 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style type="text/css">
+    /* :: 11.0 Breadcrumb CSS */
+    .breadcrumb-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+    }
+
+    .breadcrumb-content h2 {
+        font-size: 60px;
+        margin-bottom: 15px;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1199px) {
+        .breadcrumb-content h2 {
+            font-size: 48px;
+        }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+        .breadcrumb-content h2 {
+            font-size: 48px;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        .breadcrumb-content h2 {
+            font-size: 36px;
+        }
+    }
+
+    .breadcrumb-content .breadcrumb {
+        position: relative;
+        padding: 0;
+        background-color: transparent;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+
+    .breadcrumb-content .breadcrumb .breadcrumb-item a:hover,
+    .breadcrumb-content .breadcrumb .breadcrumb-item a:focus {
+        color: #bca858;
+    }
+
+    .breadcrumb-content .breadcrumb .breadcrumb-item+.breadcrumb-item::before {
+        content: '\f101';
+        font-family: "FontAwesome";
+    }
+
+    /* About Us Section */
+    #about {
+        background: #fff;
+        padding: 80px 0;
+    }
+
+    #about .about-container .background {
+        min-height: 300px;
+        background: url(#) center top no-repeat;
+        margin-bottom: 10px;
+    }
+
+    #about .about-container .content {
+        background: #fff;
+    }
+
+    #about .about-container .title {
+        color: #333;
+        font-weight: 700;
+        font-size: 32px;
+    }
+
+    @media (max-width: 768px) {
+        #about .about-container .title {
+            padding-top: 15px;
+        }
+    }
+
+    #about .about-container p {
+        line-height: 26px;
+    }
+
+    #about .about-container p:last-child {
+        margin-bottom: 0;
+    }
+
+    .akame-portfolio-single-item {
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        border-radius: 3px;
+    }
+
+    .akame-portfolio-single-item img {
+        width: 100%;
+        -webkit-transition-duration: 500ms;
+        -o-transition-duration: 500ms;
+        transition-duration: 500ms;
+        border-radius: 3px;
+    }
+
+    .akame-portfolio-single-item .overlay-content {
+        -webkit-transition-duration: 500ms;
+        -o-transition-duration: 500ms;
+        transition-duration: 500ms;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: #000000;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 100;
+        border-radius: 3px;
+        padding: 50px 30px;
+    }
+
+    .akame-portfolio-single-item .overlay-content .overlay-text h4 {
+        color: #bca858;
+    }
+
+    @media only screen and (max-width: 767px) {
+        .akame-portfolio-single-item .overlay-content .overlay-text h4 {
+            font-size: 20px;
+        }
+    }
+
+    .akame-portfolio-single-item .overlay-content .overlay-text p {
+        color: #ffffff;
+        margin-bottom: 0;
+    }
+
+    @media only screen and (min-width: 992px) and (max-width: 1199px) {
+        .akame-portfolio-single-item .overlay-content .overlay-text p {
+            font-size: 14px;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        .akame-portfolio-single-item .overlay-content .overlay-text p {
+            font-size: 14px;
+        }
+    }
+
+    .akame-portfolio-single-item .thumbnail-zoom {
+        position: absolute;
+        width: 40px;
+        height: auto;
+        margin-left: -40px;
+        font-size: 20px;
+        color: #ffffff;
+        left: 50%;
+        z-index: 100;
+        bottom: 25px;
+        text-align: center;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .akame-portfolio-single-item .thumbnail-zoom:hover,
+    .akame-portfolio-single-item .thumbnail-zoom:focus {
+        color: #bca858;
+    }
+
+    .akame-portfolio-single-item:hover img,
+    .akame-portfolio-single-item:focus img {
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    .akame-portfolio-single-item:hover .overlay-content,
+    .akame-portfolio-single-item:focus .overlay-content {
+        opacity: 0.7;
+        visibility: visible;
+    }
+
+    .akame-portfolio-single-item:hover .thumbnail-zoom,
+    .akame-portfolio-single-item:focus .thumbnail-zoom {
+        opacity: 1;
+        visibility: visible;
+        margin-left: -20px;
+    }
+
+    /* :: 15.0 Team CSS */
+    .team-area {
+        position: relative;
+        z-index: 1;
+    }
+
+    .team-area::before {
+        position: absolute;
+        width: 100%;
+        height: 70%;
+        content: '';
+        top: 0;
+        right: 0;
+        z-index: -1;
+        background-color: #f6f9f9;
+    }
+
+    .team-area .side-thumbnail {
+        position: absolute;
+        width: 555px;
+        height: 70%;
+        right: 50%;
+        top: 0;
+        z-index: -1;
+        background-position: top center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+        .team-area .side-thumbnail {
+            height: 50%;
+            opacity: 0.2;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        .team-area .side-thumbnail {
+            display: none;
+        }
+    }
+
+    .team-area.about-us-page::before {
+        height: 100%;
+    }
+
+    .team-area.about-us-page .side-thumbnail {
+        height: 100%;
+    }
+
+
+    .single-team-member {
+        position: relative;
+        z-index: 1;
+        border: 1px solid #e5e5e5;
+        -webkit-transition-duration: 500ms;
+        -o-transition-duration: 500ms;
+        transition-duration: 500ms;
+        background-color: #ffffff;
+    }
+
+    .single-team-member .team-member-img {
+        position: relative;
+        z-index: 1;
+    }
+
+    .single-team-member .team-member-img img {
+        -webkit-transition-duration: 500ms;
+        -o-transition-duration: 500ms;
+        transition-duration: 500ms;
+        width: 100%;
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+    }
+
+    .single-team-member .team-member-info {
+        padding: 20px 30px;
+    }
+
+    .single-team-member .team-member-info h5 {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .single-team-member .team-member-info p {
+        margin-bottom: 0;
+        font-size: 14px;
+    }
+
+    .single-team-member:hover,
+    .single-team-member:focus {
+        -webkit-box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
+        box-shadow: 0 2px 40px 8px rgba(15, 15, 15, 0.15);
+    }
+
+    .single-team-member:hover img,
+    .single-team-member:focus img {
+        width: 100%;
+        -webkit-filter: grayscale(0%);
+        filter: grayscale(0%);
+    }
+
+    .single-team-member:hover .team-member-info h5,
+    .single-team-member:focus .team-member-info h5 {
+        color: #bca858;
+    }
+</style>
+
+<!-- Breadcrumb Area Start -->
+<section class="breadcrumb-area section-padding-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb-content">
+                    <h2>About Us</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="icon_house_alt"></i>
+                                    Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">About Us</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Area End -->
+
+<!-- About us Section -->
+<section class="aboutus">
+    <div class="container">
+        <div class="row">
+            <!-- Section Heading -->
+            <div class="col-12 col-lg-6">
+                <div class="section-heading text-right mb-80 pr-5 pt-3" style="text-justify: left;">
+
+                    <h2>Get to know us</h2>
+                    <img src="{% static 'about_us.jpg' %}" alt="" width="100%" height=" 100%">
+
+
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="about--us--content mb-80">
+                    <p>
+                        Welcome to glamHUB.Inc, your number one source for all makeup services.
+                        We're dedicated to providing you, with the very best of any desired makeup services,
+                        with an emphasis on availing professional artists and esteemed clients.
+                    </p>
+                    <p>
+                        Founded in 2020 by Rae Initiators, glamHUB.Inc has come a long way from its beginnings in
+                        Nairobi
+                        outskirts. When Rae Initiators first started out, their passion for Bringing different makeup
+                        services
+                        to one place drove them to start their own business.
+                    </p>
+                    <p>
+                        We hope you enjoy our services as much as we enjoy offering them to you. If you have any
+                        questions
+                        or comments, please don't hesitate to contact us.
+                    </p>
+
+                    Sincerely,
+                    <br>
+
+                    <img src="{% static 'signature.png' %}" ) alt="">
+                    <h4>Rae Initiators</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End About Section -->
+
+
+
+<!-- Our Team -->
+<section class="team-area about-us-page section-padding-80-0">
+    <div class="container" style="text-align:center;">
+                <!-- Section Heading -->
+                <div class="section-heading">
+                    <h2>Our Team</h2>
+                    <p>Rae Initiators, is lead by a wonderful deligent team lead by the following:
+                        <li><strong>Courtney Myles (CEO)</strong> is a graduate of the Fuqua School of Business, Duke University.
+                            Driven by a great interest in socio-economic development, she is the founder of Rae Initiators. </li>
+                        <li><strong>Debrah Duran (CFO)</strong> trained as a professional financial analyst at the University of Nairobi,
+                            Kenya where she was the University’s Valedictorian for the class of 2007 with a Bachelor of Science, First Class Honors. </li>
+                        <li><strong>John Brown (CTO)</strong> an accomplished technologist. He has been a co-founder at Hyperion Consulting Limited
+                            and now serves as the Technical Director at glamHUB Inc. The primary focus of his work has been the application of
+                            technology to the solution of day-to-day business problems, with particular interest in makeup artistry.</li>
+                        <li><strong>Molly Mendez (Senior Developer)</strong> a BSc computer Science Graduate (Hons) from Kenyatta University,
+                            and a CPA earned at Strathmore University. Her passion is in utilizing technology and informatics to reengineer
+                            the business operations and processes and actualizing GlamHub Ideas.</li> </p>
+                </div>
+    </div>
+    <div class="container">
+        <div class="row">
+
+            <!-- Single Team Member -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="single-team-member mb-80">
+                    <div class="team-member-img">
+                        <img src="{% static 'CEO.jpeg' %}" alt="">
+                    </div>
+                    <div class="team-member-info">
+                        <h5>Courtney Myles</h5>
+                        <p>CEO</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Team Member -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="single-team-member mb-80">
+                    <div class="team-member-img">
+                        <img src="{% static 'CFO2.jpeg' %}" alt="">
+                    </div>
+                    <div class="team-member-info">
+                        <h5>Debrah Duran</h5>
+                        <p>CFO</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Team Member -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="single-team-member mb-80">
+                    <div class="team-member-img">
+                        <img src="{% static 'CTO2.jpeg' %}" alt="">
+                    </div>
+                    <div class="team-member-info">
+                        <h5>John Brown</h5>
+                        <p>CTO</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Team Member -->
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="single-team-member mb-80">
+                    <div class="team-member-img">
+                        <img src="{% static 'developer.jpeg' %}" alt="">
+                    </div>
+                    <div class="team-member-info">
+                        <h5>Molly Mendez</h5>
+                        <p>Senior Developer</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Our Team End -->
+
+
+
+{% endblock content %}
