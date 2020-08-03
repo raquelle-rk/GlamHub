@@ -57,7 +57,7 @@ urlpatterns = [
     path('register/', registration_view, name="register"),
     path('artist/', include('artist.urls', 'artist')),  # noqa
     path('artist_portfolios/', artist_portfolio_screen, name="artist_portfolios"), # noqa
-    path('contact/', contact_us_view, name="contact"),
+    path('contact_us/', contact_us_view, name="contact_us"),
     path('services/', services_screen_view, name="services"),
 
 

@@ -246,8 +246,15 @@
 </section>
 <!-- Breadcrumb Area End -->
 
+<!--What to display if an email is sent-->
+{%if message_name %}
+    <center>
+        <h2> Thanks {{ message_name}}</h2>
+        <p>We received your email and we will respond shortly...</p>
+    </center>
+    <br><br>
 
-
+{% else %}
 <!-- Google Maps -->
 <div class="google-maps-area">
     <iframe
@@ -308,7 +315,8 @@ style="background-color: #efefef;">
         <div class="row">
             <div class="col-12">
                 <!-- Form -->
-                <form action="#" method="post" class="contact-form border-0 p-0 w-100">{% csrf_token %}
+                <form action="#" method="post" class="contact-form border-0 p-0 w-100">
+                    {% csrf_token %}
                     <div class="row">
                         <div class="col-lg-6">
                             <input type="text" name="message-name" class="form-control mb-30" placeholder="Your Name">
@@ -318,7 +326,7 @@ style="background-color: #efefef;">
                         </div>
                         <div class="col-12 pt-4">
                             <textarea name="message" class="form-control mb-30"
-                                placeholder="Start the discussion..."></textarea>
+                                placeholder="Send us an email..."></textarea>
                         </div>
                         <div class="col-12 text-center pt-4">
                             <button type="submit" class="btn btn btn-3 mt-15 active btn-primary">Send Message</button>
@@ -329,7 +337,7 @@ style="background-color: #efefef;">
         </div>
     </div>
 </section>
-
+{% endif %}
 
 <!-- Contact Area End -->
 

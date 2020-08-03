@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from operator import attrgetter
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.core.mail import send_mail
+
 
 from blog.views import get_blog_queryset
 from artist.views import create_artistportfolio_view, get_artistportfolios_queryset # noqa
@@ -99,21 +101,23 @@ def artist_portfolio_screen(request, *args, **kwargs):
 
 
 def contact_us_view(request):
-    context = {}
 
     if request.method == "POST":
-        form = ContactUsForm(request.POST)
-        if form.is_valid():
-            # send email or store requests somewhere
-            import pdb; pdb.set_trace()
-            pass
-            # obj = form.save(commit=False)
-            # obj.save()
-            # context['success_message'] = "Message sent successfully"
-            # return redirect('personal:contact_us.html', {})
+        message_name = request.POST['message-name']
+        message_email = request.POST['message-email']
+        message = request.POST['message']
 
+        # send an email
+        send_mail(
+            message_name,  # subject
+            message,  # message
+            message_email,  # from email
+            ['glamhubsupport@gmail.com']  # to Email
+            )
+
+        return render(request, 'personal/contact_us.html', {'message_name': message_name})  # noqa
     else:
-        return render(request, "personal/contact_us.html", {})
+        return render(request, 'personal/contact_us.html', {})
 
 
 def services_screen_view(request):

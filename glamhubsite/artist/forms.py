@@ -1,5 +1,6 @@
+from ckeditor.widgets import CKEditorWidget
+
 from django import forms
-from django.forms import ModelForm
 
 from artist.models import ArtistPortfolio, ArtistryCategory
 # from personal.models import ContactUs
@@ -43,20 +44,6 @@ class UpdateArtistPortfolioForm(forms.ModelForm):
             artistportfolio.save()
         return artistportfolio
 
-
-# class ContactUsForm(forms.Form):
-
-#     class Meta:
-#         fields = ['message_name', 'message_email', 'message']
-
-#     def save(self, commit=True):
-#         message_name = self.instance
-#         message_email= self.cleaned_data['message_email']
-#         message = self.cleaned_data['message']
-
-#         if commit:
-#             ContactUs.save()
-#         return ContactUs
 
 
 

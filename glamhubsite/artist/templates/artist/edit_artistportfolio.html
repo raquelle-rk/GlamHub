@@ -21,7 +21,7 @@
 	<div class="row">
 		<div class="col-lg-7 offset-lg-1">
 			<form class="create-form" method="post" enctype="multipart/form-data">{% csrf_token %}
-
+				{{ artistportfolioform.media }}
 				{{artistportfolioform | crispy }}
 				<!-- Submit btn -->
 				<button class="submit-button btn btn-lg btn-primary btn-block" type="submit">POST</button>

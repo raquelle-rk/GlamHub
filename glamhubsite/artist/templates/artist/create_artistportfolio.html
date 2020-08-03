@@ -24,8 +24,6 @@
 			<form class="create-form" method="post" enctype="multipart/form-data">
 				{% csrf_token %}
 				{{ artistportfolio | crispy }}
-				{{ form.media }}
-				{{ form }}
 				<!-- Submit btn -->
 				<button class="submit-button btn btn-lg btn-primary btn-block" type="submit">POST</button>
 			</form>
