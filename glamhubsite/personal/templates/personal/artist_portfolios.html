@@ -119,16 +119,18 @@
 
 
 
-		<!-- Right 'create portforlio' column  -->
+        <!-- Right 'create portforlio' column  -->
+        {% if request.user.is_artist %}
 		<div class="right-column col-lg-3 d-lg-flex d-none flex-column">
 
 			<div class="card create-post-bar d-flex flex-column p-3">
 				<img class="img-fluid d-block m-auto pb-2"  src="{% static 'glamhub logo.png' %}" width="72" height="72">
-				<p class="lead">Get your business known?</p>
+                <p class="lead">Get your business known?</p>
 				<p class="m-auto"><a class="btn btn-primary" href="{% url 'artist:create' %}">Create Portfolio</a></p>
 			</div>
 
-		</div>
+        </div>
+        {% endif %}
 		<!-- end Right 'create portfolio' column  -->
 
 	</div>

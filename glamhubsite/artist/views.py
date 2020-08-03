@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 # from django.http import HttpResponse
@@ -12,16 +12,17 @@ from artist.forms import CreateArtistPortfolioForm, UpdateArtistPortfolioForm
 def create_artistportfolio_view(request):
     context = {}
 
-    form = CreateArtistPortfolioForm(request.POST or None, request.FILES or None) # noqa
-    if form.is_valid():
-        obj = form.save(commit=False)
-        obj.author = request.user
-        obj.save()
+    if request.method == "POST":
+        form = CreateArtistPortfolioForm(request.POST) # noqa
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.author = request.user
+            obj.save()
+        return redirect('artist_portfolios')
+    else:
         form = CreateArtistPortfolioForm()
-
-    context['artistportfolio'] = form
-
-    return render(request, 'artist/create_artistportfolio.html', context)
+        context['artistportfolio'] = form
+        return render(request, 'artist/create_artistportfolio.html', context)
 
 
 @login_required()
@@ -47,29 +48,20 @@ def edit_artistportfolio_view(request, slug):
             request.FILES or None,
             instance=artistportfolio
         )
-
         if form.is_valid():
             obj = form.save(commit=False)
             obj.save()
             context['success_message'] = "Updated Successfully"
-            artistportfolio = obj
+            return redirect('artist:detail', slug=obj.slug)
+        else:
+            context['artistportfolioform'] = form
+            return render(request, 'artist/edit_artistportfolio.html', context)
+    else:
+        form = UpdateArtistPortfolioForm(instance=artistportfolio)
 
-    form = UpdateArtistPortfolioForm(
-                initial={
-                    "business_name": artistportfolio.business_name,
-                    "description": artistportfolio.description,
-                    "profile_image": artistportfolio.profile_image,
-                }
-            )
+        context['artistportfolioform'] = form
 
-    context['artistportfolioform'] = form
-
-    return render(request, 'artist/edit_artistportfolio.html', context)
-
-    artistportfolio = get_object_or_404(ArtistPortfolio, slug=slug)
-    context['artistportfolioform'] = form
-
-    return render(request, 'artist/edit_artistportfolio.html', context)
+        return render(request, 'artist/edit_artistportfolio.html', context)
 
 
 # method to get a queryset based on a particular search

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from operator import attrgetter
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
@@ -99,15 +99,21 @@ def artist_portfolio_screen(request, *args, **kwargs):
 
 
 def contact_us_view(request):
-    # form = ContactUsForm(request.POST or None, request.FILES or None)
-    # if form.request.method == "POST":
-    #     message_name == request.POST['message-name']
-    #     message_email == request.POST['message-email']
-    #     message == request.POST['message']
-    #     return render(request, "personal/contact_us.html", {'message_name': message_name})
+    context = {}
 
-    # else:
-    return render(request, "personal/contact_us.html", {})
+    if request.method == "POST":
+        form = ContactUsForm(request.POST)
+        if form.is_valid():
+            # send email or store requests somewhere
+            import pdb; pdb.set_trace()
+            pass
+            # obj = form.save(commit=False)
+            # obj.save()
+            # context['success_message'] = "Message sent successfully"
+            # return redirect('personal:contact_us.html', {})
+
+    else:
+        return render(request, "personal/contact_us.html", {})
 
 
 def services_screen_view(request):

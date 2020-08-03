@@ -5,6 +5,9 @@ from django.conf import settings
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
 
+# from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
+
 
 # method to define the upload location for images associated with blog posts
 def upload_location(instance, filename, **kwargs):
@@ -17,8 +20,8 @@ def upload_location(instance, filename, **kwargs):
 
 
 class BlogPost(models.Model):
-    title = models.CharField(max_length=250, null=False, blank=False)
-    body = models.TextField(max_length=5000, null=False, blank=False)
+    title = models.CharField(max_length=255, null=False, blank=False)
+    body = RichTextUploadingField(max_length=5000, null=False, blank=False)
     image = models.ImageField(upload_to=upload_location, null=True, blank=True)
     date_published = models.DateTimeField(auto_now_add=True, verbose_name="date published")  # noqa
     date_updated = models.DateTimeField(auto_now=True, verbose_name="date updated")  # noqa

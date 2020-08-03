@@ -7,14 +7,16 @@
 
 <style type="text/css">
     .form-signin {
-    width: 100%;
-    max-width: 330px;
-    padding: 15px;
-    margin: auto;
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
     }
+
     .form-signin .checkbox {
         font-weight: 400;
     }
+
     .form-signin .form-control {
         position: relative;
         box-sizing: border-box;
@@ -22,61 +24,82 @@
         padding: 10px;
         font-size: 16px;
     }
+
     .form-signin .form-control:focus {
         z-index: 2;
     }
+
     .form-signin input[type="email"] {
         margin-bottom: 10px;
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
     }
+
     .form-signin input[type="text"] {
         margin-bottom: 10px;
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
     }
+
     .form-signin input[type="password"] {
         margin-bottom: -1px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
     }
-    .h3{
+
+    .h3 {
         text-align: center;
     }
 </style>
 
-<form class="form-signin" method="post">{% csrf_token %}    <!-- encryption_token that is meant to expire when you stay on the page too long or refresh -->
+<form class="form-signin" method="post">{% csrf_token %}
+    <!-- encryption_token that is meant to expire when you stay on the page too long or refresh -->
     <div class="d-flex flex-column pb-3">
-        <img class="img-fluid mx-auto d-block" src="{% static 'glamhub logo.png' %}" alt="glamhub logo" width="200" height="50">
+        <img class="img-fluid mx-auto d-block" src="{% static 'glamhub logo.png' %}" alt="glamhub logo" width="200"
+            height="50">
     </div>
     <h3 class="h3 mb-3 font-weight-normal">Register a new account</h3>
 
-    <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <div class="form-group">
+        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required
+            autofocus>
+    </div>
 
-    <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required>
+    <div class="form-group">
+        <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required>
+    </div>
+    <div class="form-group">
+        <input type="password" name="password1" id="inputPassword1" class="form-control" placeholder="Password"
+            required>
+    </div>
+    <div class="form-group">
+        <input type="password" name="password2" id="inputPassword2" class="form-control" placeholder="Confirm Password"
+            required>
+    </div>
 
-    <input type="password" name="password1" id="inputPassword1" class="form-control" placeholder="Password" required>
-
-    <input type="password" name="password2" id="inputPassword2" class="form-control" placeholder="Confirm Password" required>
-
+    <div class="form-check">
+        <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="is_artist" id="is_artist"> Check if you're an artist
+        </label>
+    </div>
 
     {% for field in registration_form %}
-        <p>
-            {%for error in field.errors %}
-            <p style="color: red;">{{error}}</p>
-            {% endfor%}
-        </p>
+    <p>
+        {%for error in field.errors %}
+    <p style="color: red;">{{error}}</p>
+    {% endfor%}
+    </p>
     {% endfor %}
 
     {% if registration_form.non_field_errors %}
-        <div style="color:red;">
-            <p>{{registration_form.non_field_errors}}</p>
-        </div>
+    <div style="color:red;">
+        <p>{{registration_form.non_field_errors}}</p>
+    </div>
     {% endif %}
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 
-  </form>
+</form>
 
 
 {% endblock content%}

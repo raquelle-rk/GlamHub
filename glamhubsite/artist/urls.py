@@ -5,7 +5,7 @@ from artist.views import (
     edit_artistportfolio_view,
 )
 
-app_name = 'blog'
+app_name = 'artist'
 
 urlpatterns = [
     path('create/', create_artistportfolio_view, name="create"),

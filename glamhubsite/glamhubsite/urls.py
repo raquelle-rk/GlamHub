@@ -48,6 +48,7 @@ urlpatterns = [
     path('about/', about_us_view, name="about"),
     path('account/', account_view, name="account"),
     path('admin/', admin.site.urls),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('posts/', blog_posts_view, name="post"),
     path('blog/', include('blog.urls', 'blog')),
     path('login/', login_view, name="login"),

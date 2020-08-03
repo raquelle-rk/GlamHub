@@ -308,7 +308,7 @@ style="background-color: #efefef;">
         <div class="row">
             <div class="col-12">
                 <!-- Form -->
-                <form action="#" method="post" class="contact-form border-0 p-0 w-100">
+                <form action="#" method="post" class="contact-form border-0 p-0 w-100">{% csrf_token %}
                     <div class="row">
                         <div class="col-lg-6">
                             <input type="text" name="message-name" class="form-control mb-30" placeholder="Your Name">

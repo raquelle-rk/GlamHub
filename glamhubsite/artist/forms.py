@@ -1,21 +1,33 @@
 from django import forms
+from django.forms import ModelForm
 
-from artist.models import ArtistPortfolio
+from artist.models import ArtistPortfolio, ArtistryCategory
+# from personal.models import ContactUs
 
 
 # create artistportfolio form
 class CreateArtistPortfolioForm(forms.ModelForm):
+    artistry_category = forms.ModelChoiceField(
+        queryset=ArtistryCategory.objects.filter(active=True),
+        required=False
+    )
 
     class Meta:
         model = ArtistPortfolio
-        fields = ['business_name', 'description', 'profile_image']
+        fields = '__all__'
+        exclude = ('slug',)
 
 
 class UpdateArtistPortfolioForm(forms.ModelForm):
+    artistry_category = forms.ModelChoiceField(
+        queryset=ArtistryCategory.objects.filter(active=True),
+        required=False
+    )
 
     class Meta:
         model = ArtistPortfolio
-        fields = ['business_name', 'description', 'profile_image']
+        fields = '__all__'
+        exclude = ('slug',)
 
     # custom edit and save method of existing profile
     def save(self, commit=True):
@@ -32,11 +44,19 @@ class UpdateArtistPortfolioForm(forms.ModelForm):
         return artistportfolio
 
 
-# class ContactUsForm(forms.ModelForm):
+# class ContactUsForm(forms.Form):
 
 #     class Meta:
-#         model = ArtistPortfolio
 #         fields = ['message_name', 'message_email', 'message']
+
+#     def save(self, commit=True):
+#         message_name = self.instance
+#         message_email= self.cleaned_data['message_email']
+#         message = self.cleaned_data['message']
+
+#         if commit:
+#             ContactUs.save()
+#         return ContactUs
 
 
 
