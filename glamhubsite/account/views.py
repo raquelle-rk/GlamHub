@@ -96,8 +96,8 @@ def account_view(request):
     blog_posts = BlogPost.objects.filter(author=request.user)
     context['blog_posts'] = blog_posts
 
-    artistportfolio = ArtistPortfolio.objects.filter(business_owner=request.user) # noqa
-    context['artistportfolio'] = artistportfolio
+    artistportfolios = ArtistPortfolio.objects.filter(business_owner=request.user) # noqa
+    context['artistportfolios'] = artistportfolios
 
     return render(request, "account/account.html", context)
 

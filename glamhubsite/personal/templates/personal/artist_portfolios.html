@@ -84,7 +84,7 @@
 <div class="container">
 	<div class="row">
 
-		<!-- feed -->
+		<!-- portfolio feed -->
 		<div class="left-column col-lg-7 offset-lg-1">
 
 			<!-- Top 'create profolio' bar -->
@@ -95,13 +95,13 @@
 					<p class="m-auto"><a class="btn btn-primary" href="{% url 'artist:create' %}">Create Portfolio</a></p>
 				</div>
 			</div>
-			<!-- end Top 'create profolio' bar -->
+            <!-- end Top 'create profolio' bar -->
 
 			<!-- artist profolios -->
 			{% if artistportfolios %}
-				{% for artistportfolio in artistportfolios %}
+				{% for portfolio in artistportfolios %}
 					<div class="artistportfolio-container">
-						{% include 'artist/artistportfolio_snippet.html' with artistportfolio=artistportfolio %}
+						{% include 'artist/artistportfolio_snippet.html' with artistportfolio=portfolio %}
 					</div>
 				{% endfor %}
 			{% else %}
@@ -109,15 +109,15 @@
 				{% include 'artist/artistportfolio_snippet.html' with query=query %}
 			</div>
 			{% endif %}
-			<!-- End Blog posts-->
+            <!-- End Blog posts-->
 
-			<!--Pagination-->
+            <!--Pagination-->
+			{% include 'artist/artistportfolio_pagination.html' with artistportfolio=artistportfolio %}
+
+
 
 		</div>
-		<!-- end  feed -->
-
-
-
+		<!-- end  portfolio feed -->
 
         <!-- Right 'create portforlio' column  -->
         {% if request.user.is_artist %}
