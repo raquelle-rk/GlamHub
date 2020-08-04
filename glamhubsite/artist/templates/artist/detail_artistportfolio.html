@@ -28,9 +28,9 @@
                     <a href="{% url 'artist:edit' artistportfolio.slug %}" class="btn btn-primary">Update</a>
                 {% endif %}
             </div>
-            <div class="card-footer text-muted">
-                Updated on {{artistportfolio.date_updated}} by {{artistportfolio.business_owner}}
-            </div>
+            <div class="card-footer text-muted" style="text-align: right;">
+				Owned by {{artistportfolio.business_owner}}
+			</div>
         </div>
         <!-- End Blog Post -->
     </div>

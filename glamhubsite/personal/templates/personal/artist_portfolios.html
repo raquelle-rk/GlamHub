@@ -105,11 +105,12 @@
 					</div>
 				{% endfor %}
 			{% else %}
-			<div class="artistportfolio-container">
-				{% include 'artist/artistportfolio_snippet.html' with query=query %}
-			</div>
+                <div class="artistportfolio-container">
+                    {% include 'artist/artistportfolio_snippet.html' with query=query %}
+                </div>
 			{% endif %}
             <!-- End Blog posts-->
+
 
             <!--Pagination-->
 			{% include 'artist/artistportfolio_pagination.html' with artistportfolios=artistportfolios %}
@@ -137,4 +138,3 @@
 </div>
 
 {% endblock content %}
-

@@ -15,8 +15,8 @@
 		<!-- Artist Portfolio -->
 		<div class="card m-auto">
 			<a href="{% url 'artist:detail' artistportfolio.slug %}">
-				{% if artistportfolio.image %}
-				<img class="card-img-top" src="{{artistportfolio.image.url}}" alt="{% static 'glamhub logo.png' %}">
+				{% if artistportfolio.profile_image %}
+				<img class="card-img-top" src="{{artistportfolio.profile_image.url}}" alt="{% static 'glamhub logo.png' %}">
 				{% endif %}
 			</a>
 			<div class="card-body mt-2 mb-2">

@@ -16,7 +16,7 @@ class CreateArtistPortfolioForm(forms.ModelForm):
     class Meta:
         model = ArtistPortfolio
         fields = '__all__'
-        exclude = ('slug',)
+        exclude = ('slug', 'business_owner')
 
 
 class UpdateArtistPortfolioForm(forms.ModelForm):
@@ -28,7 +28,7 @@ class UpdateArtistPortfolioForm(forms.ModelForm):
     class Meta:
         model = ArtistPortfolio
         fields = '__all__'
-        exclude = ('slug',)
+        exclude = ('slug', 'business_owner')
 
     # custom edit and save method of existing profile
     def save(self, commit=True):
