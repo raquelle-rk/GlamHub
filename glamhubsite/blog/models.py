@@ -21,7 +21,7 @@ def upload_location(instance, filename, **kwargs):
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=255, null=False, blank=False)
-    body = RichTextUploadingField(max_length=5000, null=False, blank=False)
+    body = RichTextUploadingField(max_length=50000, null=False, blank=False)
     image = models.ImageField(upload_to=upload_location, null=True, blank=True)
     date_published = models.DateTimeField(auto_now_add=True, verbose_name="date published")  # noqa
     date_updated = models.DateTimeField(auto_now=True, verbose_name="date updated")  # noqa

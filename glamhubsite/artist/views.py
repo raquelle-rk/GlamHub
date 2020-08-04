@@ -17,7 +17,7 @@ def create_artistportfolio_view(request):
         obj = form.save(commit=False)
         obj.business_owner = request.user
         obj.save()
-        context['success_message'] = "Post Created Successfully"
+        context['success_message'] = "Portfolio Created Successfully"
 
         form = CreateArtistPortfolioForm()
 

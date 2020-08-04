@@ -42,7 +42,7 @@ class ArtistPortfolio(models.Model):
     profile_image = models.ImageField(upload_to='pics')
     email_address = models.EmailField(max_length=70, blank=True, null=True)
     phone_number = PhoneField(null=False, blank=False)
-    description = RichTextUploadingField(max_length=1000)
+    description = RichTextUploadingField(max_length=10000)
     slug = models.SlugField(max_length=255, blank=True, null=True, unique=True)
     status = models.CharField(max_length=1, choices=STATUS)
 
