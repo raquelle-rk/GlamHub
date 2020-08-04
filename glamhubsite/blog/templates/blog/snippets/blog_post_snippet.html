@@ -7,6 +7,19 @@
 	.card-body{
 		padding: 20px;
 	}
+	img{
+
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		float: left;
+		width:  100px;
+		height: 300px;
+		object-fit: cover;
+	}
+	h4{
+		font-family:'Times New Roman', Times, serif;
+	}
 </style>
 
 {% if blog_post %}
@@ -21,14 +34,14 @@
 			</a>
 			<div class="card-body mt-2 mb-2">
 				<a href="{% url 'blog:detail' post.slug %}">
-					<h2 class="card-title">{{blog_post.title}}</h2>
+					<h4 class="card-title">{{blog_post.title}}</h4>
 				</a>
 				<p class="card-text">{{blog_post.body|safe|truncatechars:180}}</p>
 				{% if blog_post.author == request.user %}
 					<a href="{% url 'blog:edit' blog_post.slug %}" class="btn btn-primary">Update</a>
 				{% endif %}
 			</div>
-			<div class="card-footer text-muted">
+			<div class="card-footer text-muted" style="text-align:center;">
 			  Updated on {{blog_post.date_updated}} by {{blog_post.author}}
 			</div>
 		</div>

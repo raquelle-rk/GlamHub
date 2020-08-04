@@ -7,6 +7,19 @@
 	.card-body{
 		padding: 20px;
 	}
+	img{
+
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		float: left;
+		width:  100px;
+		height: 300px;
+		object-fit: cover;
+	}
+	h4{
+		font-family:'Times New Roman', Times, serif;
+	}
 </style>
 
 {% if artistportfolio %}
@@ -16,20 +29,22 @@
 		<div class="card m-auto">
 			<a href="{% url 'artist:detail' artistportfolio.slug %}">
 				{% if artistportfolio.profile_image %}
-				<img class="card-img-top" src="{{artistportfolio.profile_image.url}}" alt="{% static 'glamhub logo.png' %}">
+				<img class="card-img-top"
+				src="{{artistportfolio.profile_image.url}}"
+				alt="image missing">
 				{% endif %}
 			</a>
 			<div class="card-body mt-2 mb-2">
 				<a href="{% url 'artist:detail' artistportfolio.slug %}">
-					<h2 class="card-business_name">{{artistportfolio.business_name}}</h2>
+					<h4 class="card-business_name">{{artistportfolio.business_name}}</h4>
 				</a>
-				<p class="card-text">{{artistportfolio.body|safe|truncatechars:180}}</p>
+				<p class="card-text">{{artistportfolio.description|safe|truncatechars:180}}</p>
 				{% if artistportfolio.business_owner == request.user %}
 					<a href="{% url 'artist:edit' artistportfolio.slug %}" class="btn btn-primary">Update</a>
 				{% endif %}
 			</div>
-			<div class="card-footer text-muted">
-			  Updated on {{artistportfolio.date_updated}} by {{artistportfolio.business_owner}}
+			<div class="card-footer text-muted" style="text-align: right;">
+				Owned by {{artistportfolio.business_owner}}
 			</div>
 		</div>
 	</div>

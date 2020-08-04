@@ -18,10 +18,10 @@
 
         {% if artistportfolios.has_next %}
             <li class="page-item">
-              <a class="page-link" href="?{% if query %}q={{query}}&{% endif %}page={{ blog_posts.next_page_number }}">Next</a>
+              <a class="page-link" href="?{% if query %}q={{query}}&{% endif %}page={{ artistportfolios.next_page_number }}">Next</a>
             </li>
             <li class="page-item">
-              <a class="page-link"  href="?{% if query %}q={{query}}&{% endif %}page={{ blog_posts.paginator.num_pages }}">Last &raquo;</a>
+              <a class="page-link"  href="?{% if query %}q={{query}}&{% endif %}page={{ artistportfolios.paginator.num_pages }}">Last &raquo;</a>
             </li>
         {% endif %}
     </ul>

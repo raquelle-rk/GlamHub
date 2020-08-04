@@ -71,7 +71,7 @@ def blog_posts_view(request, *args, **kwargs):
     return render(request, "personal/blog_posts.html", context)
 
 
-ARTIST_PORTOFOLIOS_PER_PAGE = 5
+ARTISTPORTOFOLIOS_PER_PAGE = 5
 
 
 def artist_portfolio_screen(request, *args, **kwargs):
@@ -89,12 +89,12 @@ def artist_portfolio_screen(request, *args, **kwargs):
 
     # pagination for all website pages
     page = request.GET.get('page', 1)
-    artistportfolios_paginator = Paginator(artistportfolios, ARTIST_PORTOFOLIOS_PER_PAGE) # noqa
+    artistportfolios_paginator = Paginator(artistportfolios, ARTISTPORTOFOLIOS_PER_PAGE) # noqa
 
     try:
         artistportfolios = artistportfolios_paginator.page(page)
     except PageNotAnInteger:
-        artistportfolios = artistportfolios_paginator.page(ARTIST_PORTOFOLIOS_PER_PAGE) # noqa
+        artistportfolios = artistportfolios_paginator.page(ARTISTPORTOFOLIOS_PER_PAGE) # noqa
     except EmptyPage:
         artistportfolios = artistportfolios_paginator.page(artistportfolios_paginator.num_pages) # noqa
 
