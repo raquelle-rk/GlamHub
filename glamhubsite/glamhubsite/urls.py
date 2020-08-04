@@ -19,6 +19,11 @@ from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 from django.conf import settings
 
+from django.conf.urls import url
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache
+from ckeditor_uploader import views
+
 from personal.views import (
     home_screen_view,
     about_us_view,
@@ -48,7 +53,9 @@ urlpatterns = [
     path('about/', about_us_view, name="about"),
     path('account/', account_view, name="account"),
     path('admin/', admin.site.urls),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+    # path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('ckeditor/upload/', login_required(views.upload), name='ckeditor_upload'), # noqa
+    path('ckeditor/browser/', never_cache(login_required(views.browse)), name='ckeditor_browse'), # noqa
     path('posts/', blog_posts_view, name="post"),
     path('blog/', include('blog.urls', 'blog')),
     path('login/', login_view, name="login"),

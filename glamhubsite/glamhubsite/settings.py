@@ -30,9 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# tell django how to send a password reset email in develpment environment
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 
 # Application definition
@@ -57,7 +55,6 @@ INSTALLED_APPS = [
 ]
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
-
 
 
 MIDDLEWARE = [
@@ -157,13 +154,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn')
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
-if not DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST_USER = 'glamhubsite@gmail.com'
-    EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_PORT = '587'
-    EMAIL_USE_TLS = True
-    EMAIL_HOST_PASSWORD = 'jkuat2.1'
+# if not DEBUG:
+#     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#     EMAIL_HOST_USER = 'glamhubsite@gmail.com'
+#     EMAIL_HOST = 'smtp.gmail.com'
+#     EMAIL_PORT = '587'
+#     EMAIL_USE_TLS = True
+#     EMAIL_HOST_PASSWORD = 'jkuat2.1'
 
-else:
-    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# else:
+#     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# tell django how to send a password reset email in develpment environment
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

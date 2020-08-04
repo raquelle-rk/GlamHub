@@ -35,7 +35,6 @@ class UpdateArtistPortfolioForm(forms.ModelForm):
         artistportfolio = self.instance
         artistportfolio.artistry_category = self.cleaned_data['artistry_category']  # noqa
         artistportfolio.business_name = self.cleaned_data['business_name']
-        artistportfolio.business_owner = self.cleaned_data['business_owner']
         artistportfolio.email_address = self.cleaned_data['email_address']
         artistportfolio.phone_number = self.cleaned_data['phone_number']
         artistportfolio.description = self.cleaned_data['description']

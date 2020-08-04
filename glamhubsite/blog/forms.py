@@ -1,7 +1,7 @@
-from ckeditor.widgets import CKEditorWidget
+# from ckeditor.widgets import CKEditorWidget
 
 from django import forms
-from django.forms import ModelForm
+# from django.forms import ModelForm
 
 from blog.models import BlogPost
 
