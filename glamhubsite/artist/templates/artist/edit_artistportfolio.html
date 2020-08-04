@@ -24,9 +24,10 @@
 			{% if success_message %}
 				<h3 style="color: green; text-align: center;">{{success_message}}</h3>
 			{% endif%}
-			<form class="create-form" method="post" enctype="multipart/form-data">{% csrf_token %}
+			<form class="create-form" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
 				{{ artistportfolioform.media }}
-				{{artistportfolioform | crispy }}
+				{{ artistportfolioform | crispy }}
 				<!-- Submit btn -->
 				<button class="submit-button btn btn-lg btn-primary btn-block" type="submit">POST</button>
 			</form>
@@ -35,3 +36,7 @@
 </div>
 
 {% endblock content %}
+
+
+
+

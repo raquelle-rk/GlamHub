@@ -26,7 +26,7 @@ class BlogPost(models.Model):
     date_published = models.DateTimeField(auto_now_add=True, verbose_name="date published")  # noqa
     date_updated = models.DateTimeField(auto_now=True, verbose_name="date updated")  # noqa
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)  # noqa
-    slug = models.SlugField(blank=True, null=True, unique=True)
+    slug = models.SlugField(max_length=255, blank=True, null=True, unique=True)
 
     # to return title when referenced
     def __str__(self):
