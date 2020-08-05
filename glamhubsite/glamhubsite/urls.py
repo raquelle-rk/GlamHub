@@ -19,7 +19,7 @@ from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 from django.conf import settings
 
-from django.conf.urls import url
+# from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
 from ckeditor_uploader import views
@@ -31,6 +31,7 @@ from personal.views import (
     artist_portfolio_screen,
     contact_us_view,
     services_screen_view,
+
 
     )
 

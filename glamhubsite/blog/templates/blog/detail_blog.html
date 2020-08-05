@@ -28,10 +28,15 @@
         font-family: 'Times New Roman', Times, serif;
         text-align: center;
     }
+
     p {
-        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-		text-align: justify;
-	}
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: justify;
+    }
+
+    .comment {
+        margin: 20px 0px 20px 20px;
+    }
 </style>
 
 <div class="container">
@@ -48,11 +53,34 @@
                 <a href="{% url 'blog:edit' blog_post.slug %}" class="btn btn-primary">Update</a>
                 {% endif %}
             </div>
-            <div class="card-footer text-muted">
+            <!-- <div class="card-footer text-muted">
                 Updated on {{blog_post.date_updated}} by {{blog_post.author}}
-            </div>
+            </div> -->
         </div>
         <!-- End Blog Post -->
+        <!-- Comments section -->
+        <hr>
+        <a class="btn btn-default" href="{% url 'blog:add_comment' pk=blog_post.pk %}">Add comment</a>
+        {% for comment in blog_post.approved_comments %}
+        {% if user.is_authenticated or comment.approved_comment %}
+        <div class="comment">
+            <div class="date">
+                {{ comment.created_on }}
+                {% if not comment.approved_comment %}
+                <a class="btn btn-default" href="{% url 'blog:comment_remove' pk=comment.pk %}"><span
+                        class="glyphicon glyphicon-remove"></span></a>
+                <a class="btn btn-default" href="{% url 'blog:comment_approve' pk=comment.pk %}"><span
+                        class="glyphicon glyphicon-ok"></span></a>
+                {% endif %}
+            </div>
+            <strong>{{ comment.participant_name }}</strong>
+            <p>{{ comment.body | linebreaks }}</p>
+        </div>
+        {% endif %}
+        {% empty %}
+        <p>No comments here yet :(</p>
+        {% endfor %}
+        <!-- End Comments section -->
     </div>
 </div>
 {% endblock content %}

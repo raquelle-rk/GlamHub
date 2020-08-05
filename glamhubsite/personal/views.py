@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from operator import attrgetter
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.core.mail import send_mail
@@ -9,7 +9,7 @@ from artist.views import create_artistportfolio_view, get_artistportfolios_query
 from artist.models import ArtistPortfolio
 from blog.forms import CommentForm
 # from artist.forms import ContactUsForm
-# from blog.models import BlogPost
+from blog.models import BlogPost
 
 
 def home_screen_view(request):
@@ -55,6 +55,7 @@ def blog_posts_view(request, *args, **kwargs):
         context['query'] = str(query)
 
     blog_posts = sorted(get_blog_queryset(query), key=attrgetter('date_updated'), reverse=True)  # noqa
+
 
     # comments = blog_posts.comments.filter(active=True)
     # new_comment = None

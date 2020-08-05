@@ -36,9 +36,10 @@ class UpdateBlogPostForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
+
     class Meta:
         model = Comment
-        fields = ('participant_name', 'email', 'body')
+        fields = ('participant_name', 'body')
 
 
 

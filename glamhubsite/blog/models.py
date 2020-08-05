@@ -36,6 +36,9 @@ class BlogPost(models.Model):
         self.slug = slugify(self.author.username + "-" + self.title)
         super().save(*args, **kwargs)
 
+    def approved_comments(self):
+        return self.comments.filter(approved_comment=True)
+
 
 # to delete images associated with a blog post that is deleted
 @receiver(post_delete, sender=BlogPost)
@@ -44,15 +47,18 @@ def submission_delete(sender, instance, **kwargs):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(BlogPost, on_delete=models.CASCADE, related_name='comments') # noqa
-    participant_name = models.CharField(max_length=80, help_text='Your name')
-    email = models.EmailField(blank=True, help_text='Your Email')
+    post = models.ForeignKey('blog.BlogPost', on_delete=models.CASCADE, related_name='comments') # noqa
+    participant_name = models.CharField(max_length=80)
     body = models.TextField(help_text='Your comment')
     created_on = models.DateTimeField(auto_now_add=True)
-    active = models.BooleanField(default=False)
+    approved_comment = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['created_on', 'participant_name']
+
+    def approve(self):
+        self.approved_comment = True
+        self.save()
 
     def __str__(self):
         return 'Comment {} by {}'.format(self.body, self.participant_name)
