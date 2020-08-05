@@ -42,7 +42,8 @@ class ArtistPortfolio(models.Model):
     profile_image = models.ImageField(upload_to='pics')
     email_address = models.EmailField(max_length=70, blank=True, null=True)
     phone_number = PhoneField(null=False, blank=False)
-    description = RichTextUploadingField(max_length=10000)
+    description = RichTextUploadingField(max_length=10000, blank=True, null=True) # noqa
+    portfolio_image = RichTextUploadingField(max_length=10000, blank=True, null=True, config_name='special', external_plugin_resources=[('youtube', '/static/personal/vendor/ckeditor_plugins/youtube', 'plugin.js',)],) # noqa
     slug = models.SlugField(max_length=255, blank=True, null=True, unique=True)
     status = models.CharField(max_length=1, choices=STATUS)
 

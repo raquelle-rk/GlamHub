@@ -41,3 +41,18 @@ class BlogPost(models.Model):
 @receiver(post_delete, sender=BlogPost)
 def submission_delete(sender, instance, **kwargs):
     instance.image.delete(False)
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(BlogPost, on_delete=models.CASCADE, related_name='comments') # noqa
+    participant_name = models.CharField(max_length=80, help_text='Your name')
+    email = models.EmailField(blank=True, help_text='Your Email')
+    body = models.TextField(help_text='Your comment')
+    created_on = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['created_on', 'participant_name']
+
+    def __str__(self):
+        return 'Comment {} by {}'.format(self.body, self.participant_name)

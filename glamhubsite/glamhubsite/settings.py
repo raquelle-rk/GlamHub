@@ -56,6 +56,30 @@ INSTALLED_APPS = [
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'height': 500,
+        'toolbar_Custom': [
+            ['Styles', 'Font', 'Size', 'Format', 'Bold', 'Italics', 'Underline', 'Strike', 'undo', 'redo'],
+            ['Link', 'Unlink', 'Anchor'],
+            ['Image', 'Flash', 'Table', 'HorizontalRule'],
+            ['TextColor', 'BGColor'],
+            ['Smiley', 'SpecialChar'],
+            ['Source'],
+        ],
+    },
+    'special': {
+        'toolbar': 'Custom',
+        'height': 50,
+        'width': 150,
+        'toolbar_Custom': [
+            ['Image', 'Youtube'],
+        ],
+        # 'extraPlugins': 'youtube',
+    },
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

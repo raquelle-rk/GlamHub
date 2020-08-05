@@ -5,8 +5,9 @@ from django.core.mail import send_mail
 
 
 from blog.views import get_blog_queryset
-from artist.views import create_artistportfolio_view, get_artistportfolios_queryset # noqa
+from artist.views import create_artistportfolio_view, get_artistportfolios_queryset  # noqa
 from artist.models import ArtistPortfolio
+from blog.forms import CommentForm
 # from artist.forms import ContactUsForm
 # from blog.models import BlogPost
 
@@ -53,7 +54,21 @@ def blog_posts_view(request, *args, **kwargs):
         query = request.GET.get('q', '')
         context['query'] = str(query)
 
-    blog_posts = sorted(get_blog_queryset(query), key=attrgetter('date_updated'), reverse=True) # noqa
+    blog_posts = sorted(get_blog_queryset(query), key=attrgetter('date_updated'), reverse=True)  # noqa
+
+    # comments = blog_posts.comments.filter(active=True)
+    # new_comment = None
+    # # Comment posted
+    # if request.method == "POST":
+    #     comment_form = CommentForm(data=request.POST)
+    #     if comment_form.is_valid():
+
+    #         new_comment = comment_form.save(commit=False)
+    #         new_comment.post = blog_posts
+    #         new_comment.save()
+    #     else:
+    #         comment_form = CommentForm()
+
 
     # pagination for all website pages
     page = request.GET.get('page', 1)
@@ -69,6 +84,7 @@ def blog_posts_view(request, *args, **kwargs):
     context['blog_posts'] = blog_posts
 
     return render(request, "personal/blog_posts.html", context)
+    # return render(request, "personal/blog_posts.html", {"post": post, "comments": comments, "new_comment": new_comment, "comment_form": comment_form})
 
 
 ARTISTPORTOFOLIOS_PER_PAGE = 5
@@ -84,19 +100,19 @@ def artist_portfolio_screen(request, *args, **kwargs):
         context['query'] = str(query)
 
     # artistportfolios = sorted(get_artistportfolios_queryset(query), key=attrgetter('id'), reverse=True) # noqa
-    artistportfolios = sorted(ArtistPortfolio.objects.all(), key=attrgetter('business_name'), reverse=True) # noqa
+    artistportfolios = sorted(ArtistPortfolio.objects.all(), key=attrgetter('business_name'), reverse=True)  # noqa
     context['artistportfolios'] = artistportfolios
 
     # pagination for all website pages
     page = request.GET.get('page', 1)
-    artistportfolios_paginator = Paginator(artistportfolios, ARTISTPORTOFOLIOS_PER_PAGE) # noqa
+    artistportfolios_paginator = Paginator(artistportfolios, ARTISTPORTOFOLIOS_PER_PAGE)  # noqa
 
     try:
         artistportfolios = artistportfolios_paginator.page(page)
     except PageNotAnInteger:
-        artistportfolios = artistportfolios_paginator.page(ARTISTPORTOFOLIOS_PER_PAGE) # noqa
+        artistportfolios = artistportfolios_paginator.page(ARTISTPORTOFOLIOS_PER_PAGE)  # noqa
     except EmptyPage:
-        artistportfolios = artistportfolios_paginator.page(artistportfolios_paginator.num_pages) # noqa
+        artistportfolios = artistportfolios_paginator.page(artistportfolios_paginator.num_pages)  # noqa
 
     context['artistportfolios'] = artistportfolios
 
@@ -116,7 +132,7 @@ def contact_us_view(request):
             message,  # message
             message_email,  # from email
             ['glamhubsupport@gmail.com']  # to Email
-            )
+        )
 
         return render(request, 'personal/contact_us.html', {'message_name': message_name})  # noqa
     else:

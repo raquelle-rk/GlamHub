@@ -3,7 +3,7 @@
 from django import forms
 # from django.forms import ModelForm
 
-from blog.models import BlogPost
+from blog.models import BlogPost, Comment
 
 
 # create blogpost form
@@ -35,6 +35,10 @@ class UpdateBlogPostForm(forms.ModelForm):
         return blog_post
 
 
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('participant_name', 'email', 'body')
 
 
 
