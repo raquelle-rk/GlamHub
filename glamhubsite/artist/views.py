@@ -65,6 +65,7 @@ def edit_artistportfolio_view(request, slug):
                     "email_address": artistportfolio.email_address,
                     "phone_number": artistportfolio.phone_number,
                     "description": artistportfolio.description,
+                    "portfolio_images": artistportfolio.portfolio_images,
                     "status": artistportfolio.status,
 
                 }
@@ -78,7 +79,6 @@ def edit_artistportfolio_view(request, slug):
     context['artistportfolioform'] = form
 
     return render(request, 'artist/edit_artistportfolio.html', context)
-
 
 
 # method to get a queryset based on a particular search

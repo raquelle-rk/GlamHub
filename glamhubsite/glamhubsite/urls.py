@@ -67,6 +67,7 @@ urlpatterns = [
     path('artist_portfolios/', artist_portfolio_screen, name="artist_portfolios"), # noqa
     path('contact_us/', contact_us_view, name="contact_us"),
     path('services/', services_screen_view, name="services"),
+    path(r'^calendar/', include('calendarium.urls')),
 
 
 

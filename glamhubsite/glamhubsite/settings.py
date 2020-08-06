@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'account',
     'blog',
     'artist',
+    # 'clientevents',
     # django pre installed apps.
     'django.contrib.admin',
     'django.contrib.auth',
@@ -52,6 +53,10 @@ INSTALLED_APPS = [
     'crispy_forms',
     'ckeditor',
     'ckeditor_uploader',
+    'filer',
+    'mptt',
+    'easy_thumbnails',
+    'calendarium',
 ]
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
@@ -59,7 +64,7 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
-        'height': 500,
+        # 'height': 500,
         'toolbar_Custom': [
             ['Styles', 'Font', 'Size', 'Format', 'Bold', 'Italics', 'Underline', 'Strike', 'undo', 'redo'],
             ['Link', 'Unlink', 'Anchor'],
@@ -71,15 +76,20 @@ CKEDITOR_CONFIGS = {
     },
     'special': {
         'toolbar': 'Custom',
-        'height': 50,
-        'width': 150,
+        'height': 500,
+        'width': 500,
         'toolbar_Custom': [
-            ['Image', 'Youtube'],
+            ['Font', 'Size', 'Format', 'Bold', 'Italics', 'Underline', 'Strike', 'undo', 'redo'],
+
         ],
         # 'extraPlugins': 'youtube',
     },
 }
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    ...,
+    'django.template.context_processors.request',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
