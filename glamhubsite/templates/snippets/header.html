@@ -3,83 +3,171 @@
 
 
 <style type="text/css">
-    @media (min-width: 768px) {
-        html {
-            font-size: 16px;
-        }
-    }
+    .form-control {
+	box-shadow: none;
+	border-radius: 4px;
+	border-color: #dfe3e8;
+}
+.navbar {
+    background: #343b40;
+	padding-left: 16px;
+	padding-right: 16px;
+	/* border-bottom: 1px solid #dfe3e8; */
+	border-radius: 0;
+}
+.navbar a, .navbar a:active {
+	color: #999;
+	background: transparent;
+}
+.navbar .navbar-nav a:hover, .navbar .navbar-nav a:focus {
+    color: rgb(16, 245, 233) !important;
+}
+.navbar .navbar-nav > a.active, .navbar .navbar-nav.show > a {
+	color: #26bb84 !important;
+	background: transparent !important;
+}
+.navbar .form-inline .input-group-text {
+	box-shadow: none;
+	border-radius: 2px 0 0 2px;
+	background: #f5f5f5;
+	border-color: #dfe3e8;
+	font-size: 16px;
+}
+.navbar .form-inline i {
+	font-size: 16px;
+}
+.navbar .btn {
+	border-radius: 2px;
+    color: #343b40;
+	border-color: #343b40;
+	background: rgb(16, 245, 233);;
+	outline: none;
+}
+.navbar .btn:hover, .navbar .form-inline .btn:focus {
+	border-color: rgb(16, 245, 233);;
+	background-color: #343b40;
+    color: rgb(16, 245, 233);;
 
-    .container {
-        max-width: 960px;
-
-    }
-
-    .search-bar {
-        max-width: 700px;
-        width: 650px;
-        padding: 0px;
-        align-self: center;
-    }
-
-    form {
-        width: 250px;
-
-    }
+}
+.navbar .search-form {
+	display: inline-block;
+}
+.navbar .search-form .btn {
+	margin-left: 4px;
+}
+.navbar .search-form .form-control {
+	border-radius: 2px;
+}
+.navbar .login-form .input-group {
+	margin-right: 4px;
+	float: left;
+}
+.navbar .login-form .form-control {
+	max-width: 158px;
+	border-radius: 0 2px 2px 0;
+}
+.navbar .navbar-right .dropdown-toggle::after {
+	display: none;
+}
+.navbar .dropdown-menu {
+	font-size: 14px;
+	border-radius: 1px;
+	border-color: #e5e5e5;
+	box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.navbar .dropdown-menu a {
+	padding: 6px 20px;
+}
+.navbar .login-dropdown .dropdown-menu {
+	width: 505px;
+	padding: 20px;
+	left: auto;
+	right: 0;
+}
+.navbar .login-dropdown .dropdown-toggle::after {
+	display: none;
+}
+@media (min-width: 1200px){
+	.search-form .input-group {
+		width: 300px;
+		margin-left: 30px;
+	}
+}
+@media (max-width: 768px){
+	.navbar .dropdown-menu {
+		width: 100%;
+		background: transparent;
+		padding: 10px 20px;
+	}
+	.navbar .input-group {
+		width: 100%;
+		margin-bottom: 15px;
+	}
+	.navbar .input-group .form-control {
+		max-width: none;
+	}
+	.navbar .login-form .btn {
+		width: 100%;
+	}
+}
 </style>
 
 
 
 <!-- AUTHENTICATION STUFF HEADER -->
-<header class="header" style="line-height: 1; background-color: #e0e0e0;">
-
-    <nav class="navbar navbar-expand-lg  navbar-dark primary-color">
-
+<header>
+    <nav class="navbar navbar-expand-lg">
         <div class="col-2">
             <a class="navbar-brand" href="{% url 'home' %}">
-                <img class="img-fluid d-block m-auto pb-0" src="{% static 'glamhub logo.png' %}" width="120"
-                    height="100" alt="logo">
+                <img class="img-fluid d-block m-auto pb-0" src="{% static 'glamhub logo.png' %}" width="70" height="60"
+                    alt="logo">
             </a>
         </div>
-
-        <form method="get" class="col-3">
-            <input class="form-control" type="text" name="q" id="id_q" placeholder="Search...">
-        </form>
-
-        <div class="col-7">
-            {% if request.user.is_authenticated %}
-            <a class="p-2 text-dark" href="{% url 'home' %}">Home</a>
-            <a class="p-2 text-dark" href="{% url 'about' %}">About us</a>
-            <a class="p-2 text-dark" href="{% url 'services' %}">Services</a>
-            <a class="p-2 text-dark" href="{% url 'artist_portfolios' %}">Portfolios</a>
-            <a class="p-2 text-dark" href="{% url 'contact_us' %}">Contact Us</a>
-            <a class="p-2 text-dark" href="{% url 'post' %}">Blog</a>
-
-            <a class="btn btn-outline-primary" href="{% url 'account' %}">Account</a>
-            <a class="btn btn-outline-primary" href="{% url 'logout' %}">Logout</a>
-
-
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+            <div class="navbar-nav">
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'home' %}" class="nav-item nav-link ">Home</a>
+                <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
+                <a href="{% url 'services' %}" class="nav-item nav-link ">Services</a>
+                <a href="{% url 'artist_portfolios' %}" class="nav-item nav-link">Portfolios</a>
+                <a href="{% url 'contact_us' %}" class="nav-item nav-link">Contact Us</a>
+                <a href="{% url 'post' %}" class="nav-item nav-link">Blog</a>
+            </div>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search...">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <div class="navbar-nav ml-auto">
+                <span><a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'account' %}">Account</a></span>
+                <span><a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'logout' %}">Logout</a></span>
+            </div>
             {% else %}
-            <a class="p-2 text-dark" href="{% url 'home' %}">Home</a>
-            <a class="p-2 text-dark" href="{% url 'about' %}">About us</a>
-            <a class="p-2 text-dark" href="{% url 'services' %}">Services</a>
-            <a class="p-2 text-dark" href="{% url 'artist_portfolios' %}">Portfolios</a>
-            <a class="p-2 text-dark" href="{% url 'contact_us' %}">Contact Us</a>
-            <a class="p-2 text-dark" href="{% url 'post' %}">Blog</a>
-
-
-            <a class="btn btn-outline-primary" href="{% url 'login' %}">Login</a>
-            <a class="btn btn-outline-primary" href="{% url 'register' %}">Register</a>
-
-            {% endif %}
-
+            <a href="{% url 'home' %}" class="nav-item nav-link ">Home</a>
+            <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
+            <a href="{% url 'services' %}" class="nav-item nav-link ">Services</a>
+            <a href="{% url 'artist_portfolios' %}" class="nav-item nav-link">Portfolios</a>
+            <a href="{% url 'contact_us' %}" class="nav-item nav-link">Contact Us</a>
+            <a href="{% url 'post' %}" class="nav-item nav-link">Blog</a>
         </div>
-
+        <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search...">
+                <button class="btn my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <div class="navbar-nav ml-auto">
+                <a class="btn my-2 my-sm-0" href="{% url 'login' %}">Login</a>
+                <a class="btn my-2 my-sm-0" href="{% url 'register' %}">Register</a>
+            </div>
+        {% endif %}
+        </div>
+        </div>
     </nav>
 <script type="text/javascript">
     document.getElementById("id_q").value = "{{query}}"
 </script>
-
-
 </header>
 
 
