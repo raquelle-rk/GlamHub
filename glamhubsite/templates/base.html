@@ -51,7 +51,7 @@
 
         <!-- check if session has a user object saved to it (is user authenticated?) -->
         {% if request.user.is_authenticated %}
-        <p style="font-family: sofia;background-color: #f8f5f5; margin-bottom: 0;">Hello {{request.user.username}},</p>
+        <p style="font-family: sofia;background-color: #f8f5f5; margin-bottom: 0;">Hello {{request.user.username|title}},</p>
         {% endif %}
 
 

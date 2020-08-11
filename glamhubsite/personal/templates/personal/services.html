@@ -4,9 +4,57 @@
 {% block content %}
 
 <style type="text/css">
-    * {
-        margin: 0;
-        padding: 0;
+    .bg-overlay {
+        position: relative;
+        z-index: 1;
+    }
+
+    .bg-overlay::after {
+        position: absolute;
+        content: "";
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        background-color: rgba(0, 0, 0, 0.65);
+    }
+
+    .bg-img {
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .jarallax {
+        position: relative;
+        z-index: 0;
+    }
+
+    .jarallax>.jarallax-img {
+        position: absolute;
+        object-fit: cover;
+        font-family: 'object-fit: cover';
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+    .mfp-image-holder .mfp-close,
+    .mfp-iframe-holder .mfp-close {
+        color: #ffffff;
+        right: 20px;
+        text-align: center;
+        padding-right: 0;
+        width: 100%;
+        position: fixed;
+        top: 20px;
+        width: 30px;
+        background: #bca858;
+        height: 30px;
+        line-height: 30px;
     }
 
     /* :: 11.0 Breadcrumb CSS */
@@ -57,7 +105,6 @@
         content: '\f101';
         font-family: "FontAwesome";
     }
-
 
     /* :: 16.0 Service CSS */
     .single-service-area {
@@ -258,8 +305,15 @@
     .glamhub-service .single--service--item:last-child {
         border-bottom: 1px solid #e5e5e5;
     }
-</style>
+    .service-thumbnail {
+        background-position: right;
+        -webkit-background-size: cover ;
+        background-size: auto;
+        background-attachment: fixed;
+        color: #fff;
 
+    }
+</style>
 
 <!-- Breadcrumb Area Start -->
 <section class="breadcrumb-area section-padding-80">
@@ -270,7 +324,8 @@
                     <h2>Our Services</h2>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="icon_house_alt"></i> Home</a>
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="icon_house_alt"></i>
+                                    Home</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Services</li>
                         </ol>
@@ -290,14 +345,19 @@
         <!-- Service Content -->
         <div class="service-content">
             <div class="service-text">
-                <p><h3>Account Set-ups</h3> <h5>who can setup an account?</h5></p>
+                <p>
+                <h3>Account Set-ups</h3>
+                <h5>who can setup an account?</h5>
+                </p>
 
                 <p><span>Professional makeup artist:</span> <span>$55+</span></p>
                 <p><span>Esteemed makeup client:</span> <span>$75+</span></p>
             </div>
         </div>
         <!-- Service Thumbnail -->
-        <div class="service-thumbnail bg-img jarallax" style="background-image: url('{% static 'account setup.jpeg' %}'); background-size: cover; background-position: center center;"></div>
+        <div class="service-thumbnail"
+            style="background-image: url('{% static 'account setup.jpeg' %}'); background-size: 50% 100%; ">
+        </div>
 
 
     </div>
@@ -305,31 +365,32 @@
     <!-- Single Service Item -->
     <div class="single--service--item odd-item d-flex flex-wrap align-items-center">
         <!-- Service Thumbnail -->
-        <div class="service-thumbnail bg-img jarallax" style="background-image: url('{% static 'pool.jpeg' %}'); background-size: cover;"></div>
+        <div class="service-thumbnail "
+            style="background-image: url('{% static 'pool.jpeg' %}'); background-size: 50% 100%; "></div>
 
         <!-- Service Content -->
         <div class="service-content">
             <div class="service-text">
                 <h3>Makeup Artistry Services Pool</h3>
                 <p><span>Personal Services:</span></p>
-                    <span>
-                        <ul style="text-decoration: none;">
-                            <li>Bridal and wedding makeup</li>
-                            <li>Family photoshoot?</li>
-                        </ul>
-                    </span>
+                <span>
+                    <ul style="text-decoration: none;">
+                        <li>Bridal and wedding makeup</li>
+                        <li>Family photoshoot?</li>
+                    </ul>
+                </span>
 
 
                 <p><span>Film and Movies:</span></p>
-                    <ul>
-                        <li> character to suit makeup</li>
-                    </ul>
+                <ul>
+                    <li> character to suit makeup</li>
+                </ul>
                 <p><span>Specialised makeup:</span>
-                    <ul style="text-decoration: none;">
-                        <li>scars and deformity coverup makeup</li>
-                    </ul>
+                <ul style="text-decoration: none;">
+                    <li>scars and deformity coverup makeup</li>
+                </ul>
                 <p><span>Fashion</span></p>
-                     Runway makeup
+                Runway makeup
             </div>
         </div>
     </div>
@@ -341,15 +402,20 @@
             <div class="service-text">
                 <h3>Book Your Favorite Artist</h3>
                 <div class="book-now-btn ml-5 mt-4 mt-lg-0 ml-md-4">
-                    <a class="btn btn-outline-primary" href="#" >Book Now</a>
+                    <a class="btn btn-outline-primary" href="#">Book Now</a>
                 </div>
             </div>
         </div>
         <!-- Service Thumbnail -->
-        <div class="service-thumbnail bg-img jarallax" style="background-image: url('{% static 'accounts 5.jpeg' %}'); background-size: cover;"></div>
+        <div class="service-thumbnail"
+            style="background-image: url('{% static 'accounts 5.jpeg' %}'); background-size: 60%; "></div>
     </div>
 
 </section>
 <!-- Service Area End -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="parallaxie.js"></script>
 
 {% endblock content %}
