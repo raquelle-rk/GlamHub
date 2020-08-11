@@ -80,7 +80,6 @@ def edit_artistportfolio_view(request, slug):
     return render(request, 'artist/edit_artistportfolio.html', context)
 
 
-
 # method to get a queryset based on a particular search
 def get_artistportfolios_queryset(query=None):
     queryset = []

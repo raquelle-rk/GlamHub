@@ -71,12 +71,12 @@ def edit_blog_view(request, slug):
             blog_post = obj
 
     form = UpdateBlogPostForm(
-                initial={
-                    "title": blog_post.title,
-                    "body": blog_post.body,
-                    "image": blog_post.image,
-                }
-            )
+        initial={
+            "title": blog_post.title,
+            "body": blog_post.body,
+            "image": blog_post.image,
+        }
+    )
 
     context['form'] = form
 
@@ -105,13 +105,12 @@ def comment_remove(request, pk):
 # method to get a queryset based on a particular search
 def get_blog_queryset(query=None):
     queryset = []
-    queries = query.split(" ")  # how to clean would be [how, to, clean]
+    queries = query.split(" ")
     for q in queries:
         posts = BlogPost.objects.filter(
-                Q(title__icontains=q) |
+                Q(title__contains=q) |
                 Q(body__icontains=q)
             ).distinct()
-
         for post in posts:
             queryset.append(post)
 
