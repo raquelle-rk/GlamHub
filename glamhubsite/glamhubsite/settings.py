@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'ckeditor',
     'ckeditor_uploader',
-    # 'search',
 ]
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
@@ -60,9 +59,9 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
-        'height': 500,
+        # 'height': 500,
         'toolbar_Custom': [
-            ['Styles', 'Font', 'Size', 'Format', 'Bold', 'Italics', 'Underline', 'Strike', 'undo', 'redo'],
+            ['Styles', 'Font', 'FontSize', 'Format', 'Bold', 'Italic', 'Underline', 'Strike', 'undo', 'redo'],
             ['Link', 'Unlink', 'Anchor'],
             ['Image', 'Flash', 'Table', 'HorizontalRule'],
             ['TextColor', 'BGColor'],
@@ -72,8 +71,8 @@ CKEDITOR_CONFIGS = {
     },
     'special': {
         'toolbar': 'Custom',
-        'height': 50,
-        'width': 150,
+        'height': 500,
+        'width': 500,
         'toolbar_Custom': [
             ['Image', 'Youtube'],
         ],
@@ -181,11 +180,11 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # if not DEBUG:
 #     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#     EMAIL_HOST_USER = 'glamhubsite@gmail.com'
+#     EMAIL_HOST_USER = os.environ.get('GLAM_HUB_USER'),
 #     EMAIL_HOST = 'smtp.gmail.com'
 #     EMAIL_PORT = '587'
 #     EMAIL_USE_TLS = True
-#     EMAIL_HOST_PASSWORD = 'jkuat2.1'
+#     EMAIL_HOST_PASSWORD = os.environ.get('GLAM_HUB_PASSWORD'),
 
 # else:
 #     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

@@ -65,6 +65,7 @@ def edit_artistportfolio_view(request, slug):
                     "email_address": artistportfolio.email_address,
                     "phone_number": artistportfolio.phone_number,
                     "description": artistportfolio.description,
+                    "portfolio_images": artistportfolio.portfolio_images,
                     "status": artistportfolio.status,
 
                 }
@@ -95,3 +96,4 @@ def get_artistportfolios_queryset(query=None):
 
     # create unique set and then convert to list
     return list(set(queryset))
+

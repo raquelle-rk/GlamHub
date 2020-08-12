@@ -45,12 +45,16 @@
             <div class="card-body my-2">
                 <h4 class="card-business_name">{{artistportfolio.business_name}}</h4>
                 <p class="card-text">{{artistportfolio.description|safe}}</p>
+                <hr>
+                <p class="card-text">{{artistportfolio.portfolio_images|safe}}</p>
+            </div>
+            <div class="card-body my-2">
                 {% if  artistportfolio.business_owner == request.user %}
                 <a href="{% url 'artist:edit' artistportfolio.slug %}" class="btn btn-primary">Update</a>
                 {% endif %}
             </div>
             <div class="card-footer text-muted" style="text-align: right;">
-                Owned by {{artistportfolio.business_owner}}
+                Owned by {{artistportfolio.business_owner|title}}
             </div>
         </div>
         <!-- End Blog Post -->
