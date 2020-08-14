@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% load crispy_forms_tags %}
+
 {% block content %}
+
 
 <style type="text/css">
   .create-form {
@@ -26,6 +31,7 @@
 				{% csrf_token %}
 				{{ form.media }}
 				{{ form }}
+				<!-- {{ from | crispy }} -->
 
 
 				<!-- title -->

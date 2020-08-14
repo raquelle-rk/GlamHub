@@ -5,7 +5,7 @@ from django.core.mail import send_mail
 
 
 from blog.views import get_blog_queryset
-from artist.views import create_artistportfolio_view, get_artistportfolios_queryset  # noqa
+from artist.views import get_artistportfolios_queryset  # noqa
 from artist.models import ArtistPortfolio
 from blog.forms import CommentForm
 # from artist.forms import ContactUsForm
@@ -101,7 +101,7 @@ def artist_portfolio_screen(request, *args, **kwargs):
         context['query'] = str(query)
 
     # artistportfolios = sorted(get_artistportfolios_queryset(query), key=attrgetter('id'), reverse=True) # noqa
-    artistportfolios = sorted(ArtistPortfolio.objects.all(), key=attrgetter('business_name'), reverse=True)  # noqa
+    artistportfolios = sorted(get_artistportfolios_queryset(query), key=attrgetter('business_name'), reverse=True)  # noqa
     context['artistportfolios'] = artistportfolios
 
     # pagination for all website pages
@@ -143,3 +143,9 @@ def contact_us_view(request):
 def services_screen_view(request):
 
     return render(request, "personal/services.html", {})
+
+
+# def SearchResultsView(request):
+#     model = BlogPost
+#     template_name = 'search_results.html'
+

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'account',
     'blog',
     'artist',
+    'appointments',
     # django pre installed apps.
     'django.contrib.admin',
     'django.contrib.auth',
