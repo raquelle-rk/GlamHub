@@ -1,7 +1,7 @@
 {% load static %}
 <style type="text/css">
 	.card{
-		max-width: 700px;
+		max-width: 800px;
 		width: 120%;
 	}
 	.card-body{
@@ -46,7 +46,9 @@
 				{% endif %}
 			</div>
 			<div class="card-footer text-muted" style="text-align:center;">
-			  Updated on {{blog_post.date_updated}} by {{blog_post.author|title}}
+				Comments: <a href="{% url 'blog:detail' slug=post.slug %}">{{ post.approved_comments.count }}</a>
+				<br>
+				Post by {{blog_post.author|title}}
 			</div>
 		</div>
 	</div>

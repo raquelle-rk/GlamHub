@@ -10,6 +10,7 @@ from account.forms import (
 from blog.models import BlogPost
 from artist.models import ArtistPortfolio
 
+
 # The registration form view creation
 def registration_view(request):
     context = {}

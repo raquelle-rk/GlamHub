@@ -1,29 +1,59 @@
-{% extends 'common/base.html' %}
+{% extends 'base.html' %}
 
 {% load static %}
 
 {% load crispy_forms_tags %}
 
-{% block page_css %}
-<link rel="stylesheet" type="text/css" href="{% static 'appointments/css/datetimepicker.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'appointments/css/appointments.css' %}">
-{% endblock %}
-
-{% block page_js %}
-<script src="{% static 'appointments/js/datetimepicker.js' %}"></script>
-<script src="{% static 'appointments/js/appointments.js' %}"></script>
-{% endblock %}
-
 {% block page_name %}
 Create Appointment
 {% endblock %}
 
+
 {% block content %}
-<form method="POST" action="{% url 'appointments:create' form.initial.portfolio.id %}">
-    {% csrf_token %}
-    {{ form | crispy }}
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<style type="text/css">
+    .card {
+        max-width: 800px;
+    }
+
+
+    .container {
+        padding: 20px;
+    }
+
+
+    .btn {
+        border-radius: 2px;
+        color: #343b40;
+        border-color: #343b40;
+        background: rgb(16, 245, 233);
+        ;
+        outline: none;
+    }
+
+    .btn:hover,
+    .btn:focus {
+        border-color: rgb(16, 245, 233);
+        ;
+        background-color: #343b40;
+        color: rgb(16, 245, 233);
+        ;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="card m-auto" style="background-color:#343b40; text-align: center; color: rgb(247, 244, 244);">
+            <form method="POST" action="{% url 'appointments:create' form.initial.portfolio.slug %}">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
 <script>
     setDatePicker({{blocked_dates|safe}})
 </script>

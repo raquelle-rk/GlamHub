@@ -106,8 +106,9 @@
             {% for post in blog_posts %}
             <div class="blog-post-container">
                 {% include 'blog/snippets/blog_post_snippet.html' with blog_post=post %}
+                
             </div>
-            Comments: <a href="{% url 'blog:detail' slug=post.slug %}">{{ post.approved_comments.count }}</a>
+
             {% endfor %}
             {% else %}
             <div class="blog-post-container">

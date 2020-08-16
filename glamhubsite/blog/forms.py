@@ -39,7 +39,7 @@ class CommentForm(forms.ModelForm):
 
     class Meta:
         model = Comment
-        fields = ('participant_name', 'body')
+        fields = ('participant_name', 'body',)
 
 
 

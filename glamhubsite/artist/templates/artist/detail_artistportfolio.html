@@ -48,9 +48,16 @@
                 <hr>
                 <p class="card-text">{{artistportfolio.portfolio_images|safe}}</p>
             </div>
-            <div class="card-body my-2">
+            <div class="card-body my-2" style=" text-align:center">
                 {% if  artistportfolio.business_owner == request.user %}
-                <a href="{% url 'artist:edit' artistportfolio.slug %}" class="btn btn-primary">Update</a>
+                <a href="{% url 'artist:edit' artistportfolio.slug %}" class="btn btn-primary">Update</a>                {% endif %}
+
+            </div>
+            <div class="card-body my-2" style=" text-align:center">
+                {% if  artistportfolio.business_owner == request.user %}
+                <a href="#" class="btn btn-primary">Check your Appointments</a>
+                {% elif not request.user.is_artist %}
+                <a href="{%url 'appointments:create' artistportfolio.slug %}" class="btn btn-primary">Book an Appointment</a>
                 {% endif %}
             </div>
             <div class="card-footer text-muted" style="text-align: right;">

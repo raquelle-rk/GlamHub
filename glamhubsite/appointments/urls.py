@@ -4,5 +4,6 @@ from . import views
 
 app_name = 'appointments'
 urlpatterns = [
-    path('<uuid:pk>/create/', views.AppointmentCreateView.as_view(), name='create'), # noqa
+    path('<str:slug>/create/', views.AppointmentCreateView.as_view(), name='create'), # noqa
+    path('<int:pk>/approve/', views.approve_appointment, name='approve'), # noqa
 ]

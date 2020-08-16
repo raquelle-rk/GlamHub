@@ -16,4 +16,38 @@ My Appointments
 
 {% block content %}
 
+{% if appointments%}
+{% for appointment in appointments %}
+<div class="container">
+	<div class="row">
+		<div class="card m-auto">
+			<div class="card-body mt-2 mb-2">
+					<h4 class="card-title">{{appointment.appointment_date}}</h4>
+				</a>
+				<p class="card-text">{{appointment.description}}</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endfor %}
+{% else %}
+
+{% else %}
+
+<div class="container">
+	<div class="row">
+		<div class="card m-auto">
+			<div class="card-body mt-2 mb-2">
+				<h2 class="card-title" style="text-align: center;">Nothing Found</h2>
+				<!-- <p class="card-text">There were no results matching the search: "{{query}}"</p> -->
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endif %}
+
 {% endblock %}
