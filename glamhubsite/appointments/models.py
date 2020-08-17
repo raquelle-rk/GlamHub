@@ -14,7 +14,7 @@ class Appointment(models.Model):
         ArtistPortfolio, on_delete=models.CASCADE,
         blank=True, null=True)
     appointment_date = models.DateField()
-    description = models.TextField(blank=True, null=True, max_length=200)
+    description = models.TextField(blank=False, null=False, max_length=200, help_text="Tell us a little bit about what you want done.")
     is_approved = models.BooleanField(default=False)
 
     class Meta:

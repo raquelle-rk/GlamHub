@@ -91,7 +91,9 @@ def approve_appointment(request, pk):
             'feedback/appointment_approval_email.html',
             context={
                 'client': appointment.client.username,
-                'business_name': appointment.portfolio.business_name
+                'business_name': appointment.portfolio.business_name,
+                'description': appointment.description,
+                'appointment_date': appointment.appointment_date
             }
         )
         try:
@@ -126,7 +128,10 @@ def reject_appointment(request, pk):
             'feedback/appointment_rejection_email.html',
             context={
                 'client': appointment.client.username,
-                'business_name': appointment.portfolio.business_name
+                'business_name': appointment.portfolio.business_name,
+                'description': appointment.description,
+                'appointment_date': appointment.appointment_date
+
             }
         )
         try:
