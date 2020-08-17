@@ -55,7 +55,7 @@
             </div>
             <div class="card-body my-2" style=" text-align:center">
                 {% if  artistportfolio.business_owner == request.user %}
-                <a href="#" class="btn btn-primary">Check your Appointments</a>
+                <a href="{%url 'appointments:list' artistportfolio.slug %}" class="btn btn-primary">Check your Appointments</a>
                 {% elif not request.user.is_artist %}
                 <a href="{%url 'appointments:create' artistportfolio.slug %}" class="btn btn-primary">Book an Appointment</a>
                 {% endif %}

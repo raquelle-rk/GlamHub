@@ -36,20 +36,12 @@ class UpdateBlogPostForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
+    body = forms.CharField(
+        required=True,
+        max_length=1000,
+        widget=forms.TextInput(attrs={'placeholder': 'Enter comment'}),
+        label=False)
 
     class Meta:
         model = Comment
-        fields = ('participant_name', 'body',)
-
-
-
-
-
-
-
-
-
-
-
-
-
+        fields = ('body',)

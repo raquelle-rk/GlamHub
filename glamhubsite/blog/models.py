@@ -8,6 +8,8 @@ from django.dispatch import receiver
 # from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
+from account.models import Account
+
 
 # method to define the upload location for images associated with blog posts
 def upload_location(instance, filename, **kwargs):
@@ -36,9 +38,6 @@ class BlogPost(models.Model):
         self.slug = slugify(self.author.username + "-" + self.title)
         super().save(*args, **kwargs)
 
-    def approved_comments(self):
-        return self.comments.filter(approved_comment=True)
-
 
 # to delete images associated with a blog post that is deleted
 @receiver(post_delete, sender=BlogPost)
@@ -48,13 +47,15 @@ def submission_delete(sender, instance, **kwargs):
 
 class Comment(models.Model):
     post = models.ForeignKey('blog.BlogPost', on_delete=models.CASCADE, related_name='comments') # noqa
-    participant_name = models.CharField(max_length=80)
+    participant = models.ForeignKey(
+        Account, on_delete=models.CASCADE,
+        blank=True, null=True)
     body = models.TextField(help_text='Your comment')
     created_on = models.DateTimeField(auto_now_add=True)
     approved_comment = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ['created_on', 'participant_name']
+        ordering = ['created_on', 'participant']
 
     def approve(self):
         self.approved_comment = True
@@ -62,7 +63,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return 'Comment {} by {}'.format(self.body, self.participant_name)
-
-    
-
-

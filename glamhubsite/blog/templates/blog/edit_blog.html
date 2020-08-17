@@ -68,20 +68,6 @@
 				{% csrf_token %}
 				{{ form.media }}
 				{{ form | crispy }}
-
-				<!-- title -->
-				<!-- <div class="form-group">
-					<label for="id_title">Title</label>
-					<input class="form-control" type="text" name="title" id="id_title" placeholder="Title" value="{{form.initial.title}}" required autofocus>
-				</div> -->
-
-				<!-- Body -->
-				<!-- <div class="form-group">
-					<label for="id_body">Content</label>
-					<textarea class="form-control" rows="10" type="text" name="body" id="id_body" placeholder="This blog is about..."
-					required>{{form.initial.body}}</textarea>
-				</div> -->
-
 				<!-- Image -->
 				<div class="form-group image-group" id="id_image_group">
 					{% if form.initial.image %}

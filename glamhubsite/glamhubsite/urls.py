@@ -48,6 +48,7 @@ from artist.views import (
     edit_artistportfolio_view,
 )
 
+from appointments.views import approve_appointment, reject_appointment
 
 urlpatterns = [
     path('', home_screen_view, name="home"),
@@ -97,6 +98,15 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(
         template_name='registration/password_reset_complete.html'),
         name='password_reset_complete'),
+
+
+
+    path(
+        'appointment_approval/', approve_appointment),
+    path(
+        'appointment_reject/', reject_appointment),
+
+
 
 ]
 

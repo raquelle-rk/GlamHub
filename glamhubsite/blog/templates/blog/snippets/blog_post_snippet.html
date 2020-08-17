@@ -46,7 +46,7 @@
 				{% endif %}
 			</div>
 			<div class="card-footer text-muted" style="text-align:center;">
-				Comments: <a href="{% url 'blog:detail' slug=post.slug %}">{{ post.approved_comments.count }}</a>
+				Comments: <a href="{% url 'blog:detail' slug=post.slug %}">{{ post.comments.count }}</a>
 				<br>
 				Post by {{blog_post.author|title}}
 			</div>

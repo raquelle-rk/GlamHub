@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 # from django.http import HttpResponse
+from django.urls import reverse_lazy
 
 from blog.models import BlogPost, Comment
 from blog.forms import CreateBlogPostForm, UpdateBlogPostForm, CommentForm
@@ -32,23 +33,25 @@ def detail_blog_view(request, slug):
     context = {}
 
     blog_post = get_object_or_404(BlogPost, slug=slug)
+    form = CommentForm()
     context['blog_post'] = blog_post
+    context['form'] = form
 
     return render(request, 'blog/detail_blog.html', context)
 
 
-def add_comment_to_post(request, pk):
-    post = get_object_or_404(BlogPost, pk=pk)
-    if request.method == "POST":
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.post = post
-            comment.save()
-            return redirect('blog:detail', slug=post.slug)
-    else:
-        form = CommentForm()
-    return render(request, 'blog/add_comment_to_post.html', {'form': form})
+# def add_comment_to_post(request, pk):
+#     post = get_object_or_404(BlogPost, pk=pk)
+#     if request.method == "POST":
+#         form = CommentForm(request.POST)
+#         if form.is_valid():
+#             comment = form.save(commit=False)
+#             comment.post = post
+#             comment.save()
+#             return redirect('blog:detail', slug=post.slug)
+#     else:
+#         form = CommentForm()
+#     return render(request, 'blog/add_comment_to_post.html', {'form': form})
 
 
 @login_required()
@@ -63,7 +66,6 @@ def edit_blog_view(request, slug):
             request.FILES or None,
             instance=blog_post
         )
-
         if form.is_valid():
             obj = form.save(commit=False)
             obj.save()
@@ -89,18 +91,20 @@ def edit_blog_view(request, slug):
 
 
 @login_required()
-def add_comment(request, pk):
+def add_comment_to_post(request, pk):
     post = get_object_or_404(BlogPost, pk=pk)
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post
+            comment.participant = request.user
             comment.save()
-            return redirect('blog/detail_blog.html', pk=post.pk)
+            url = reverse_lazy('blog:detail', kwargs={'slug': post.slug})
+            return redirect(url)
     else:
         form = CommentForm()
-    return render(request, 'blog/add_comment.html', {'form': form})
+    return render(request, 'blog/detail_blog.html', {'form': form})
 
 
 @login_required()
