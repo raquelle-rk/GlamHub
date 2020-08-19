@@ -69,6 +69,8 @@ urlpatterns = [
     path('contact_us/', contact_us_view, name="contact_us"),
     path('services/', services_screen_view, name="services"),
     path('appointments/', include('appointments.urls')),
+    path('reviews/', include('review.urls', 'reviews')),
+    # path('ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),  # noqa
 
 
 

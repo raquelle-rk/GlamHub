@@ -83,26 +83,25 @@ My Appointments
 						<td>{{appointment.description}}</td>
 						<td>{{appointment.client.username}}</td>
 						<td colspan="2">
-							<a href="{%url 'appointments:approve' appointment.pk %}" class="btn btn-outline-success">Approve</a>
-							<a href="{%url 'appointments:reject' appointment.pk %}" class="btn btn-outline-warning">Reject</a>
+							<a
+								href="{%url 'appointments:approve' appointment.pk %}"
+								class="btn btn-outline-success {% if appointment.is_approved is True %} disabled {% endif %}"
+								{% if appointment.is_approved is True %} aria-disabled="true" {% endif %}
+							>Approve</a>
+							<a
+								href="{%url 'appointments:reject' appointment.pk %}"
+								class="btn btn-outline-warning {% if appointment.is_approved is False %} disabled {% endif %}"
+								{% if appointment.is_approved is False %} aria-disabled="true" {% endif %}
+							>Reject</a>
 						</td>
 						<td>
 							{% if appointment.is_approved is True %}
-							Approved
-							<!-- {% elif appointment.is_rejected is True %}
-							Rejected -->
+								<p>Approved</p>
+							{% elif appointment.is_approved is False %}
+								<p>Rejected</p>
 							{% else %}
-							Not yet confirmed
+								<p>Not yet confirmed</p>
 							{% endif %}
-							<!-- {% if appointment.is_reject is True %}
-							Approved
-							{% else %}
-							Not yet confirmed
-							{% endif %} -->
-
-
-
-
 						</td>
 					</tr>
 				</table>

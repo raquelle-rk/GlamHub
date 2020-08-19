@@ -63,7 +63,9 @@ class AppointmentCreateView(LoginRequiredMixin, View):
                         'description': appointment.description
                     }
                 )
+                # return render(request, 'appointments/appointment_create.html', context)
                 return render(request, self.template_name, {'form': form})
+        # return render(request, 'appointments/appointment_create.html', context)
         return render(request, self.template_name, {'form': form})
 
 
@@ -117,7 +119,7 @@ def reject_appointment(request, pk):
     appointment = get_object_or_404(Appointment, pk=pk)
     if appointment.artist == request.user:
         print("rejecting")
-        appointment.is_reject = True
+        appointment.is_approved = False
         appointment.save()
         messages.error(request, "Appointment rejected. An email will be sent to the client")
        #  send email to appointment.client.email

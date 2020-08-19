@@ -9,6 +9,8 @@ from django.conf import settings
 # from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
+from account.models import Account
+
 
 # method to define the upload location for images associated with blog posts
 def upload_location(instance, filename, **kwargs):
@@ -59,3 +61,5 @@ class ArtistPortfolio(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.business_name + "-" + self.business_owner.username) # noqa
         super().save(*args, **kwargs)
+
+

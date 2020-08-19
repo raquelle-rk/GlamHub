@@ -29,6 +29,23 @@
         font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 		text-align: justify;
 	}
+	.btn {
+        border-radius: 2px;
+        color: #343b40;
+        border-color: #343b40;
+        background: rgb(16, 245, 233);
+        ;
+        outline: none;
+    }
+
+    .btn:hover,
+    .btn:focus {
+        border-color: rgb(16, 245, 233);
+        ;
+        background-color: #343b40;
+        color: rgb(16, 245, 233);
+        ;
+    }
 </style>
 
 {% if artistportfolio %}
@@ -52,7 +69,7 @@
 
 				<p class="card-text">{{artistportfolio.description|safe|truncatechars:180}}</p>
 				{% if artistportfolio.business_owner == request.user %}
-				<a href="{% url 'artist:edit' artistportfolio.slug %}" class="btn btn-primary">Update</a>
+				<a href="{% url 'artist:edit' artistportfolio.slug %}" class="btn ">Update</a>
 				{% endif %}
 
 
@@ -60,8 +77,11 @@
 
 
 			</div>
-			<div class="card-footer text-muted" style="text-align: right;">
+			<div class="card-footer text-muted" style="text-align: center;">
+				Reviews: <a href="{% url 'artist:detail' artistportfolio.pk %}">{{ portfolio.reviews.count }}</a>
+				<br>
 				Owned by {{artistportfolio.business_owner|title}}
+
 			</div>
 		</div>
 	</div>

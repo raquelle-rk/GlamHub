@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+<!-- {% load crispy_forms_tags %} -->
 
 {% block content %}
 
@@ -33,6 +34,23 @@
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         text-align: justify;
     }
+    .btn {
+        border-radius: 2px;
+        color: #343b40;
+        border-color: #343b40;
+        background: rgb(16, 245, 233);
+        ;
+        outline: none;
+    }
+
+    .btn:hover,
+    .btn:focus {
+        border-color: rgb(16, 245, 233);
+        ;
+        background-color: #343b40;
+        color: rgb(16, 245, 233);
+        ;
+    }
 </style>
 
 <div class="container">
@@ -55,16 +73,45 @@
             </div>
             <div class="card-body my-2" style=" text-align:center">
                 {% if  artistportfolio.business_owner == request.user %}
-                <a href="{%url 'appointments:list' artistportfolio.slug %}" class="btn btn-primary">Check your Appointments</a>
+                <a href="{%url 'appointments:list' artistportfolio.slug %}" class="btn -primary">Check your Appointments</a>
                 {% elif not request.user.is_artist %}
                 <a href="{%url 'appointments:create' artistportfolio.slug %}" class="btn btn-primary">Book an Appointment</a>
                 {% endif %}
             </div>
+
+
             <div class="card-footer text-muted" style="text-align: right;">
                 Owned by {{artistportfolio.business_owner|title}}
             </div>
+            <div class="col-md-8 card mb-4  mt-3 ">
+                <!-- reviews section -->
+                <!-- <form action="{% url 'review:add_review' artistportfolio.pk %}" method="POST" class="post-form">{% csrf_token %}
+                    {{ form | crispy }}
+                    <button type="submit" class="btn btn-default">Add review</button>
+                </form> -->
+                <a href="{% url 'review:add_review' artistportfolio.pk %}" class="btn btn-primary">Add a review</a>
+
+                <br>
+                {% for review in artistportfolio.reviews.all %}
+                {% if user.is_authenticated %}
+                    <div class="comment">
+                        <div class="date">
+                        </div>
+                        <p>{{ review.body | linebreaks }}</p>
+                        <strong>{{ review.name.username}}</strong> | {{ review.created_on }}
+
+                    </div>
+                    {% endif %}
+                    <hr>
+                    {% empty %}
+                    <hr>
+                    <p></p>No reviews here yet :(</p>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
         <!-- End Blog Post -->
+
     </div>
 </div>
 {% endblock content %}

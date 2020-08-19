@@ -3,6 +3,7 @@ from ckeditor.widgets import CKEditorWidget
 from django import forms
 
 from artist.models import ArtistPortfolio, ArtistryCategory
+from review.models import Review
 # from personal.models import ContactUs
 
 
@@ -48,16 +49,15 @@ class UpdateArtistPortfolioForm(forms.ModelForm):
         return artistportfolio
 
 
+class ReviewForm(forms.ModelForm):
+    body = forms.CharField(
+        required=True,
+        max_length=1000,
+        widget=forms.TextInput(attrs={'placeholder': 'Leave a review'}),
+        label=False)
 
+    class Meta:
+        model = Review
+        fields = ('body',)
 
-
-
-
-
-
-
-
-
-
-
-
+    

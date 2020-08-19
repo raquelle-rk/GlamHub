@@ -38,15 +38,38 @@ Create Appointment
         color: rgb(16, 245, 233);
         ;
     }
+
+    .datepicker-here {
+        box-sizing: border-box;
+        width: 70%;
+        margin: auto;
+        border: 3px solid rgb(16, 245, 233);
+        padding-right: 20px;
+        padding-left: 30px;
+        padding-bottom: 20px;
+        padding-top: 20px;
+
+    }
 </style>
 
 <div class="container">
     <div class="row">
-        <div class="card m-auto" style="background-color:#343b40; text-align: center; color: rgb(247, 244, 244);">
+        <div class="card m-auto"
+            style="background-color:#343b40; text-align: center; color: rgb(247, 244, 244); width: 40%;">
             <form method="POST" action="{% url 'appointments:create' form.initial.portfolio.slug %}">
                 {% csrf_token %}
                 {{ form | crispy }}
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <!-- <h5 style="text-align: center; font-family:Georgia, 'Times New Roman', Times, serif;">The Date</h5>
+                <div class="datepicker-here" data-language='en' style="align-items: center;"></div>
+                <div>
+                    <hr>
+                    <h5 style="text-align: center; font-family:Georgia, 'Times New Roman', Times, serif;">Description
+                    </h5>
+                    <textarea placeholder="What do you want done?" cols="40" rows="6"></textarea>
+                </div> -->
+
+                <div> <button type="submit" class="btn btn-primary">Submit</button></div>
+
             </form>
         </div>
 
@@ -55,6 +78,6 @@ Create Appointment
 </div>
 
 <script>
-    setDatePicker({{blocked_dates|safe}})
+    setDatePicker({{ blocked_dates| safe}})
 </script>
 {% endblock %}

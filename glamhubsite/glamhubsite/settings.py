@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'blog',
     'artist',
     'appointments',
+    'review',
     # django pre installed apps.
     'django.contrib.admin',
     'django.contrib.auth',
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'ckeditor',
     'ckeditor_uploader',
+
 ]
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
@@ -109,6 +111,10 @@ TEMPLATES = [
         },
     },
 ]
+
+TEMPLATE_CONTEXT_PROCESSORS = 'django.core.context_processors.request',
+
+
 LOGIN_URL = 'login'
 AUTH_USER_MODEL = 'account.Account'  # set property for custom user model to overwtite the default built in django behaivour for default user objects
 WSGI_APPLICATION = 'glamhubsite.wsgi.application'
