@@ -55,7 +55,7 @@ class Comment(models.Model):
     approved_comment = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ['created_on', 'participant']
+        ordering = ['-created_on', 'participant']
 
     def approve(self):
         self.approved_comment = True
