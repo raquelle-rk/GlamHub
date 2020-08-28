@@ -49,13 +49,19 @@ def blog_posts_view(request, *args, **kwargs):
     context = {}
 
     # to accept queries
+    # query = ""
+    # if request.GET:
+    #     query = request.GET.get('q', '')
+    #     context['query'] = str(query)
+
+    # blog_posts = sorted(get_blog_queryset(query), key=attrgetter('date_updated'), reverse=True)  # noqa
+
     query = ""
     if request.GET:
         query = request.GET.get('q', '')
         context['query'] = str(query)
-
-    blog_posts = sorted(get_blog_queryset(query), key=attrgetter('date_updated'), reverse=True)  # noqa
-
+    blog_posts = sorted(get_blog_queryset(query), key=attrgetter('date_updated'), reverse=True)
+   
 
     # comments = blog_posts.comments.filter(active=True)
     # new_comment = None
@@ -69,7 +75,6 @@ def blog_posts_view(request, *args, **kwargs):
     #         new_comment.save()
     #     else:
     #         comment_form = CommentForm()
-
 
     # pagination for all website pages
     page = request.GET.get('page', 1)
@@ -148,4 +153,3 @@ def services_screen_view(request):
 # def SearchResultsView(request):
 #     model = BlogPost
 #     template_name = 'search_results.html'
-

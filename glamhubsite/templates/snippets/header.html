@@ -144,9 +144,8 @@
                 <a href="{% url 'contact_us' %}" class="nav-item nav-link">Contact Us</a>
                 <a href="{% url 'post' %}" class="nav-item nav-link">Blog</a>
             </div>
-            <form class="form-inline my-2 my-lg-0" method="GET">
-                <input class="form-control mr-sm-2" type="text" name="q" id="id_q" placeholder="Search..." aria-label="Search...">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <form class="form-inline my-2 my-lg-0" method="get">
+				<input class="form-control mr-sm-2" type="text" name="q" id="id_q" placeholder="Search..." aria-label="Search...">                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
             <div class="navbar-nav ml-auto">
                 <span><a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'account' %}">Account</a></span>
@@ -160,10 +159,9 @@
             <a href="{% url 'contact_us' %}" class="nav-item nav-link">Contact Us</a>
             <a href="{% url 'post' %}" class="nav-item nav-link">Blog</a>
         </div>
-        <form class="form-inline my-2 my-lg-0" method="get">
-                <input class="form-control mr-sm-2" type="text" name="q" id="id_q" placeholder="Search" aria-label="Search...">
-                <button class="btn my-2 my-sm-0" type="submit">Search</button>
-            </form>
+		<form class="form-inline my-2 my-lg-0" method="get">
+			<input class="form-control mr-sm-2" type="text" name="q" id="id_q" placeholder="Search..." aria-label="Search...">                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		</form>
             <div class="navbar-nav ml-auto">
                 <a class="btn my-2 my-sm-0" href="{% url 'login' %}">Login</a>
                 <a class="btn my-2 my-sm-0" href="{% url 'register' %}">Register</a>
