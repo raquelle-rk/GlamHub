@@ -78,7 +78,7 @@
 
 			</div>
 			<div class="card-footer text-muted" style="text-align: center;">
-				Reviews: <a href="{% url 'artist:detail' artistportfolio.pk %}">{{ portfolio.reviews.count }}</a>
+				Reviews: <a href="{% url 'artist:detail' artistportfolio.slug %}">{{ portfolio.reviews.count }}</a>
 				<br>
 				Owned by {{artistportfolio.business_owner|title}}
 

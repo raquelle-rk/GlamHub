@@ -4,7 +4,9 @@
     <ul class="pagination pg-grey justify-content-center">
         {% if artistportfolios.has_previous %}
             <li class="page-item">
-              <a class="page-link" href="?{% if query %}q={{query}}&{% endif %}page={{ artistportfolios.previous_page_number }}">&laquo; Previous</a>
+              <a class="page-link"
+              href="?{% if query %}q={{query}}&{% endif %}page={{ artistportfolios.previous_page_number }}">
+              &laquo; Previous</a>
             </li>
         {% endif %}
 
@@ -12,16 +14,21 @@
             {% if artistportfolios.number == i %}
                 <li class="page-item active"><a class="page-link">{{ i }}</a></li>
             {% else %}
-                <li class="page-item" ><a class="page-link" href="?{% if query %}q={{query}}&{% endif %}page={{ i }}">{{ i }}</a></li>
+                <li class="page-item" ><a class="page-link"
+                    href="?{% if query %}q={{query}}&{% endif %}page={{ i }}">{{ i }}</a></li>
             {% endif %}
         {% endfor %}
 
         {% if artistportfolios.has_next %}
             <li class="page-item">
-              <a class="page-link" href="?{% if query %}q={{query}}&{% endif %}page={{ artistportfolios.next_page_number }}">Next</a>
+              <a class="page-link"
+              href="?{% if query %}q={{query}}&{% endif %}page={{ artistportfolios.next_page_number }}">
+              Next</a>
             </li>
             <li class="page-item">
-              <a class="page-link"  href="?{% if query %}q={{query}}&{% endif %}page={{ artistportfolios.paginator.num_pages }}">Last &raquo;</a>
+              <a class="page-link"
+              href="?{% if query %}q={{query}}&{% endif %}page={{ artistportfolios.paginator.num_pages }}">
+              Last &raquo;</a>
             </li>
         {% endif %}
     </ul>

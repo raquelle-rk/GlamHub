@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{{ error }}
+
+{% if post %}
+  <center><h4>Search Results Found</h4></center>
+  <br>
+
+
+  {% for i in post %}
+  <center><h5><a href="/posts/{{i.slug}}">{{i.title}}:{{i.body}}</a></h5></center>
+  {% endfor %}
+
+{% else %}
+  <center><h4>Sorry nothing found...</h4></center>
+{% endfor %}
+{% endblock content %}

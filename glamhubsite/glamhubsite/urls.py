@@ -42,11 +42,7 @@ from account.views import (
     account_view,
     must_authenticate_view,
 )
-from artist.views import (
-    create_artistportfolio_view,
-    detail_artistportfolio_view,
-    edit_artistportfolio_view,
-)
+
 
 from appointments.views import approve_appointment, reject_appointment
 
@@ -70,7 +66,6 @@ urlpatterns = [
     path('services/', services_screen_view, name="services"),
     path('appointments/', include('appointments.urls')),
     path('reviews/', include('review.urls', 'reviews')),
-    # path('ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),  # noqa
 
 
 

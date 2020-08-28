@@ -33,7 +33,6 @@ def create_artistportfolio_view(request):
 def detail_artistportfolio_view(request, slug):
 
     context = {}
-
     artistportfolio = get_object_or_404(ArtistPortfolio, slug=slug)
     context['artistportfolio'] = artistportfolio
 
@@ -87,8 +86,8 @@ def edit_artistportfolio_view(request, slug):
 @login_required()
 def add_review_to_portfolio(request, pk):
     portfolio = get_object_or_404(ArtistPortfolio, pk=pk)
-    if request.method == "POST":
-        form = ReviewForm(request.POST)
+    if request.method == "GET":
+        form = ReviewForm(request.GET)
         if form.is_valid():
             review = form.save(commit=False)
             review.portfolio = portfolio
