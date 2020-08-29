@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -86,22 +87,24 @@ def edit_artistportfolio_view(request, slug):
 @login_required()
 def add_review_to_portfolio(request, pk):
     portfolio = get_object_or_404(ArtistPortfolio, pk=pk)
-    if request.method == "GET":
-        form = ReviewForm(request.GET)
+    if request.POST:
+        form = ReviewForm(request.POST)
         if form.is_valid():
             review = form.save(commit=False)
             review.portfolio = portfolio
             review.name = request.user
             review.save()
+
+            messages.success(request, "Review created successfully ")
             url = reverse_lazy('artist:detail', kwargs={
                                'slug': portfolio.slug})
             return redirect(url)
-    else:
-        form = ReviewForm(
-            initial={
-                'portfolio': portfolio
-            }
-        )
+
+    form = ReviewForm(
+        initial={
+            'portfolio': portfolio
+        }
+    )
     return render(request, 'reviews/add_review.html', {'form': form})
 
 
