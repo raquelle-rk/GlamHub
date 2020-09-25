@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'ckeditor',
     'ckeditor_uploader',
+    'django_celery_beat',
 
 ]
 
@@ -174,7 +175,7 @@ USE_TZ = True
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-    # '/var/www/static/',
+    # '/var/www/static/','django_celery_beat',
     # os.path.join(BASE_DIR, 'static_cdn'),
     os.path.join(BASE_DIR, 'media_cdn'),
 ]

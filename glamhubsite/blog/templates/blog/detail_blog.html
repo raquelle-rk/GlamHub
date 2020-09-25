@@ -152,18 +152,20 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-8">
-                            <div class="card card-white post ">
+                            <div class="card card-white post " style="white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;">
 
                                 <div class="post-heading">
 
-                                    <div class="float-center meta">
+                                    <div class="float-center meta"  >
 
                                         <div class="title h5">
                                             <h8>{{ comment.participant.username}} commented</h8>
                                         </div>
                                         <h6 class="text-muted time">{{ comment.created_on }}</h6>
                                     </div>
-                                    <div>
+                                    <div >
                                         <center>
                                             <p>{{ comment.body |capfirst |linebreaks   }}</p>
                                         </center>
